@@ -1,8 +1,8 @@
 .. ref-debugging:
 
-==================
+====================
 Debugging Tastefulpy
-==================
+====================
 
 There are some common problems people run into when using Tastefulpy for the first
 time. Some of the common problems and things to try appear below.

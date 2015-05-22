@@ -1,8 +1,8 @@
 .. _ref-non_orm_data_sources:
 
-========================================
+==========================================
 Using Tastefulpy With Non-ORM Data Sources
-========================================
+==========================================
 
 Much of this documentation demonstrates the use of Tastefulpy with Django's ORM.
 You might think that Tastefulpy depended on the ORM, when in fact, it was

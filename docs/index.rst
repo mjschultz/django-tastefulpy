@@ -1,5 +1,5 @@
 Welcome to Tastefulpy!
-====================
+======================
 
 Tastefulpy is a webservice API framework for Django. It provides a convenient,
 yet powerful and highly customizable, abstraction for creating REST-style
@@ -112,7 +112,7 @@ Optional
 
 
 Why Tastefulpy?
-=============
+===============
 
 There are other, better known API frameworks out there for Django. You need to
 assess the options available and decide for yourself. That said, here are some
