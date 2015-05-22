@@ -1,8 +1,8 @@
 .. _ref-tutorial:
 
-=============================
+===============================
 Getting Started with Tastefulpy
-=============================
+===============================
 
 Tastefulpy is a reusable app (that is, it relies only on its own code and
 focuses on providing just a REST-style API) and is suitable for providing an
