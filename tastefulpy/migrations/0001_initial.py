@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 from django.conf import settings
-import tastypie.utils.timezone
+import tastefulpy.utils.timezone
 
 
 class Migration(migrations.Migration):
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('key', models.CharField(default='', max_length=128, db_index=True, blank=True)),
-                ('created', models.DateTimeField(default=tastypie.utils.timezone.now)),
+                ('created', models.DateTimeField(default=tastefulpy.utils.timezone.now)),
                 ('user', models.OneToOneField(related_name='api_key', to=settings.AUTH_USER_MODEL)),
             ],
             options={
