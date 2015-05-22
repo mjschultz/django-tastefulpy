@@ -53,7 +53,7 @@ Defaults to ``False``.
 
 
 ``TASTEFULPY_CANNED_ERROR``
-=========================
+===========================
 
 **Optional**
 
@@ -68,7 +68,7 @@ Defaults to ``"Sorry, this request could not be processed. Please try again late
 
 
 ``TASTEFULPY_ALLOW_MISSING_SLASH``
-================================
+==================================
 
 **Optional**
 
@@ -86,7 +86,7 @@ Defaults to ``False``.
 
 
 ``TASTEFULPY_DATETIME_FORMATTING``
-================================
+==================================
 
 **Optional**
 
@@ -102,7 +102,7 @@ Defaults to ``iso-8601``. ``iso-8601`` includes microseconds if available, use `
 .. _settings.TASTEFULPY_DEFAULT_FORMATS:
 
 ``TASTEFULPY_DEFAULT_FORMATS``
-================================
+==============================
 
 **Optional**
 
@@ -117,7 +117,7 @@ Defaults to ``['json', 'xml', 'yaml', 'html', 'plist']``.
 
 
 ``TASTEFULPY_ABSTRACT_APIKEY``
-============================
+==============================
 
 **Optional**
 
