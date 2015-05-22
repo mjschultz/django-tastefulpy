@@ -19,8 +19,8 @@ Using these classes is simple. Simply provide them (or your own class) as a
 ``Meta`` option to the ``Resource`` in question. For example::
 
     from django.contrib.auth.models import User
-    from tastypie.authorization import DjangoAuthorization
-    from tastypie.resources import ModelResource
+    from tastefulpy.authorization import DjangoAuthorization
+    from tastefulpy.resources import ModelResource
 
 
     class UserResource(ModelResource):
@@ -35,7 +35,7 @@ Using these classes is simple. Simply provide them (or your own class) as a
 Authorization Options
 =====================
 
-Tastypie ships with the following ``Authorization`` classes:
+Tastefulpy ships with the following ``Authorization`` classes:
 
 ``Authorization``
 ~~~~~~~~~~~~~~~~~
@@ -118,13 +118,13 @@ Implementing Your Own Authorization
 
 Implementing your own ``Authorization`` classes is a relatively simple
 process. Anything that is API-compatible is acceptable, only the method names
-matter to Tastypie.
+matter to Tastefulpy.
 
 An example implementation of a user only being able to access or modify "their" objects might
 look like::
 
-    from tastypie.authorization import Authorization
-    from tastypie.exceptions import Unauthorized
+    from tastefulpy.authorization import Authorization
+    from tastefulpy.exceptions import Unauthorized
 
 
     class UserObjectsOnlyAuthorization(Authorization):

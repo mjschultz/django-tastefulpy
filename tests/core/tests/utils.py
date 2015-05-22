@@ -4,10 +4,10 @@ import mock
 from django.http import HttpRequest
 from django.test import TestCase
 
-from tastypie.exceptions import BadRequest
-from tastypie.serializers import Serializer
-from tastypie.utils.mime import determine_format, build_content_type
-from tastypie.utils.timezone import now
+from tastefulpy.exceptions import BadRequest
+from tastefulpy.serializers import Serializer
+from tastefulpy.utils.mime import determine_format, build_content_type
+from tastefulpy.utils.timezone import now
 
 try:
     from django.utils import timezone as dj_tz

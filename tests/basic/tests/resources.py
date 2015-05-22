@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.http import HttpRequest
-from tastypie.bundle import Bundle
-from tastypie.fields import ToOneField, ToManyField
-from tastypie.resources import ModelResource
+from tastefulpy.bundle import Bundle
+from tastefulpy.fields import ToOneField, ToManyField
+from tastefulpy.resources import ModelResource
 from basic.api.resources import SlugBasedNoteResource
 from basic.models import Note, AnnotatedNote, SlugBasedNote
 from testcases import TestCaseWithFixture

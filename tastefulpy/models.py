@@ -4,7 +4,7 @@ import time
 from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from tastypie.utils import now
+from tastefulpy.utils import now
 
 try:
     from hashlib import sha1
@@ -30,7 +30,7 @@ class ApiAccess(models.Model):
 
 if 'django.contrib.auth' in settings.INSTALLED_APPS:
     import uuid
-    from tastypie.compat import AUTH_USER_MODEL
+    from tastefulpy.compat import AUTH_USER_MODEL
     class ApiKey(models.Model):
         user = models.OneToOneField(AUTH_USER_MODEL, related_name='api_key')
         key = models.CharField(max_length=128, blank=True, default='', db_index=True)
@@ -52,7 +52,7 @@ if 'django.contrib.auth' in settings.INSTALLED_APPS:
             return hmac.new(new_uuid.bytes, digestmod=sha1).hexdigest()
 
         class Meta:
-            abstract = getattr(settings, 'TASTYPIE_ABSTRACT_APIKEY', False)
+            abstract = getattr(settings, 'TASTEFULPY_ABSTRACT_APIKEY', False)
 
 
     def create_api_key(sender, **kwargs):

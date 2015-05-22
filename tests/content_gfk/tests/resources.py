@@ -1,6 +1,6 @@
 from django.test import TestCase
-from tastypie.exceptions import NotFound
-from tastypie.contrib.contenttypes.resources import GenericResource
+from tastefulpy.exceptions import NotFound
+from tastefulpy.contrib.contenttypes.resources import GenericResource
 
 from content_gfk.api.resources import NoteResource, DefinitionResource
 

@@ -10,7 +10,7 @@ the traditional "fetch-read-click" cycle is no longer measured in minutes but
 in seconds or milliseconds.
 
 As such, caching is a very important part of the deployment of your API.
-Tastypie ships with two classes to make working with caching easier. These
+Tastefulpy ships with two classes to make working with caching easier. These
 caches store at the object level, reducing access time on the database.
 
 However, it's worth noting that these do *NOT* cache serialized representations.
@@ -33,8 +33,8 @@ Using these classes is simple. Simply provide them (or your own class) as a
 ``Meta`` option to the ``Resource`` in question. For example::
 
     from django.contrib.auth.models import User
-    from tastypie.cache import SimpleCache
-    from tastypie.resources import ModelResource
+    from tastefulpy.cache import SimpleCache
+    from tastefulpy.resources import ModelResource
 
 
     class UserResource(ModelResource):
@@ -49,7 +49,7 @@ Using these classes is simple. Simply provide them (or your own class) as a
 Caching Options
 ===============
 
-Tastypie ships with the following ``Cache`` classes:
+Tastefulpy ships with the following ``Cache`` classes:
 
 ``NoCache``
 ~~~~~~~~~~~
@@ -95,16 +95,16 @@ cache might look like::
 
     import json
     from django.conf import settings
-    from tastypie.cache import NoCache
+    from tastefulpy.cache import NoCache
 
 
     class JSONCache(NoCache):
         def _load(self):
-            data_file = open(settings.TASTYPIE_JSON_CACHE, 'r')
+            data_file = open(settings.TASTEFULPY_JSON_CACHE, 'r')
             return json.load(data_file)
 
         def _save(self, data):
-            data_file = open(settings.TASTYPIE_JSON_CACHE, 'w')
+            data_file = open(settings.TASTEFULPY_JSON_CACHE, 'w')
             return json.dump(data, data_file)
 
         def get(self, key):
@@ -129,7 +129,7 @@ clients and intermediaries who is allowed to cache a response and for how long.
 Mark Nottingham has a `general caching introduction`_ and the `Django cache
 documentation`_ describes how to set caching-related headers in your code. The
 range of possible options is beyond the scope of this documentation, but it's
-important to know that, by default, Tastypie will prevent responses from being
+important to know that, by default, Tastefulpy will prevent responses from being
 cached to ensure that clients always receive current information.
 
 .. _general caching introduction: http://www.mnot.net/cache_docs/
@@ -148,7 +148,7 @@ to the `cache_control`_ helper provided by Django. If you wish to add your own
 methods to it, you can do so by overloading the ``cache_control`` method and
 modifying the dictionary it returns.::
 
-    from tastypie.cache import SimpleCache
+    from tastefulpy.cache import SimpleCache
 
     class NoTransformCache(SimpleCache):
 
@@ -165,12 +165,12 @@ HTTP Vary
 
 The HTTP protocol defines a ``Vary`` header, which can be used to tell clients
 and intermediaries on what headers your response varies. This allows clients to
-store a correct response for each type. By default, Tastypie will send the
+store a correct response for each type. By default, Tastefulpy will send the
 ``Vary: Accept`` header so that a seperate response is cached for each
 ``Content-Type``. However, if you wish to change this, simply pass a list to
 the ``varies`` kwarg of any ``Cache`` class.
 
-It is important to note that if a list is passed, Tastypie not automatically
+It is important to note that if a list is passed, Tastefulpy not automatically
 include the ``Vary: Accept`` and you should include it as a member of your
 list.::
 

@@ -3,7 +3,7 @@ v0.9.13
 
 *SECURITY HARDENING*
 
-The latest version of Tastypie includes a number of important security fixes and all users are strongly
+The latest version of Tastefulpy includes a number of important security fixes and all users are strongly
 encouraged to upgrade.
 
 Please note that the fixes might cause backwards incompatibility issues, so please check the upgrade notes
@@ -16,16 +16,16 @@ Security hardening improvements
 * XML requests may no longer include DTDs by default
 * Deserialization will return HTTP 400 for any XML decode errors
 * Don't even use XML and want to disable it? There's a simple
-  :ref:`TASTYPIE_DEFAULT_FORMATS setting <settings.TASTYPIE_DEFAULT_FORMATS>` setting to globally
+  :ref:`TASTEFULPY_DEFAULT_FORMATS setting <settings.TASTEFULPY_DEFAULT_FORMATS>` setting to globally
   restrict the set of supported formats
-  (closes `#833 <https://github.com/toastdriven/django-tastypie/pull/833>`_):
+  (closes `#833 <https://github.com/toastdriven/django-tastefulpy/pull/833>`_):
 
-  http://django-tastypie.readthedocs.org/en/v0.9.14/settings.html#tastypie-default-formats
-* Content negotiation will return an error for malformed accept headers (closes `#832 <https://github.com/toastdriven/django-tastypie/pull/832>`_)
-* The Api class itself now allows a custom serializer (closes `#817 <https://github.com/toastdriven/django-tastypie/pull/817>`_)
+  http://django-tastefulpy.readthedocs.org/en/v0.9.14/settings.html#tastefulpy-default-formats
+* Content negotiation will return an error for malformed accept headers (closes `#832 <https://github.com/toastdriven/django-tastefulpy/pull/832>`_)
+* The Api class itself now allows a custom serializer (closes `#817 <https://github.com/toastdriven/django-tastefulpy/pull/817>`_)
 * The serialization documentation has been upgraded with security advice:
 
-    http://django-tastypie.readthedocs.org/en/v0.9.14/serialization.html#serialization-security
+    http://django-tastefulpy.readthedocs.org/en/v0.9.14/serialization.html#serialization-security
 
 Upgrade notes:
 

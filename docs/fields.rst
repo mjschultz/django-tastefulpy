@@ -15,8 +15,8 @@ Quick Start
 
 For the impatient::
 
-  from tastypie import fields, utils
-  from tastypie.resources import Resource
+  from tastefulpy import fields, utils
+  from tastefulpy.resources import Resource
   from myapp.api.resources import ProfileResource, NoteResource
 
 
@@ -63,7 +63,7 @@ Defaults to ``None``, meaning data will be manually accessed.
 Provides default data when the object being ``dehydrated``/``hydrated`` has no data on
 the field.
 
-Defaults to ``tastypie.fields.NOT_PROVIDED``.
+Defaults to ``tastefulpy.fields.NOT_PROVIDED``.
 
 ``null``
 ~~~~~~~~
@@ -117,7 +117,7 @@ value.
 Field Types
 -----------
 
-.. module:: tastypie.fields
+.. module:: tastefulpy.fields
 
 ``BooleanField``
 ----------------
@@ -197,7 +197,7 @@ rather than the related object. This allows the field to represent its data
 in different ways.
 
 The abstractions based around this are "leaky" in that, unlike the other
-fields provided by ``tastypie``, these fields don't handle arbitrary objects
+fields provided by ``tastefulpy``, these fields don't handle arbitrary objects
 very well. The subclasses use Django's ORM layer to make things go, though
 there is no ORM-specific code at this level.
 

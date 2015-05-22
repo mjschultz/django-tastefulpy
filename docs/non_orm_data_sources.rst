@@ -1,15 +1,15 @@
 .. _ref-non_orm_data_sources:
 
 ========================================
-Using Tastypie With Non-ORM Data Sources
+Using Tastefulpy With Non-ORM Data Sources
 ========================================
 
-Much of this documentation demonstrates the use of Tastypie with Django's ORM.
-You might think that Tastypie depended on the ORM, when in fact, it was
+Much of this documentation demonstrates the use of Tastefulpy with Django's ORM.
+You might think that Tastefulpy depended on the ORM, when in fact, it was
 purpose-built to handle non-ORM data. This documentation should help you get
 started providing APIs using other data sources.
 
-Virtually all of the code that makes Tastypie actually process requests &
+Virtually all of the code that makes Tastefulpy actually process requests &
 return data is within the ``Resource`` class. ``ModelResource`` is actually a
 light wrapper around ``Resource`` that provides ORM-specific access. The
 methods that ``ModelResource`` overrides are the same ones you'll need to
@@ -20,7 +20,7 @@ Approach
 
 When working with ``Resource``, many things are handled for you. All the
 authentication/authorization/caching/serialization/throttling bits should work
-as normal and Tastypie can support all the REST-style methods. Schemas &
+as normal and Tastefulpy can support all the REST-style methods. Schemas &
 discovery views all work the same as well.
 
 What you don't get out of the box are the fields you're choosing to expose &

@@ -8,9 +8,9 @@ from django.utils import six
 from django.utils.encoding import force_text, smart_bytes
 from django.core.serializers import json as djangojson
 
-from tastypie.bundle import Bundle
-from tastypie.exceptions import BadRequest, UnsupportedFormat
-from tastypie.utils import format_datetime, format_date, format_time, make_naive
+from tastefulpy.bundle import Bundle
+from tastefulpy.exceptions import BadRequest, UnsupportedFormat
+from tastefulpy.utils import format_datetime, format_date, format_time, make_naive
 
 try:
     import defusedxml.lxml as lxml
@@ -38,14 +38,14 @@ XML_ENCODING = re.compile('<\?xml.*?\?>', re.IGNORECASE)
 
 
 # Ugh & blah.
-# So doing a regular dump is generally fine, since Tastypie doesn't usually
+# So doing a regular dump is generally fine, since Tastefulpy doesn't usually
 # serialize advanced types. *HOWEVER*, it will dump out Python Unicode strings
 # as a custom YAML tag, which of course ``yaml.safe_load`` can't handle.
 if yaml is not None:
     from yaml.constructor import SafeConstructor
     from yaml.loader import Reader, Scanner, Parser, Composer, Resolver
 
-    class TastypieConstructor(SafeConstructor):
+    class TastefulpyConstructor(SafeConstructor):
         def construct_yaml_unicode_dammit(self, node):
             value = self.construct_scalar(node)
             try:
@@ -53,15 +53,15 @@ if yaml is not None:
             except UnicodeEncodeError:
                 return value
 
-    TastypieConstructor.add_constructor(u'tag:yaml.org,2002:python/unicode', TastypieConstructor.construct_yaml_unicode_dammit)
+    TastefulpyConstructor.add_constructor(u'tag:yaml.org,2002:python/unicode', TastefulpyConstructor.construct_yaml_unicode_dammit)
 
-    class TastypieLoader(Reader, Scanner, Parser, Composer, TastypieConstructor, Resolver):
+    class TastefulpyLoader(Reader, Scanner, Parser, Composer, TastefulpyConstructor, Resolver):
         def __init__(self, stream):
             Reader.__init__(self, stream)
             Scanner.__init__(self)
             Parser.__init__(self)
             Composer.__init__(self)
-            TastypieConstructor.__init__(self)
+            TastefulpyConstructor.__init__(self)
             Resolver.__init__(self)
 
 
@@ -96,7 +96,7 @@ class Serializer(object):
         if datetime_formatting is not None:
             self.datetime_formatting = datetime_formatting
         else:
-            self.datetime_formatting = getattr(settings, 'TASTYPIE_DATETIME_FORMATTING', 'iso-8601')
+            self.datetime_formatting = getattr(settings, 'TASTEFULPY_DATETIME_FORMATTING', 'iso-8601')
 
         self.supported_formats = []
 
@@ -106,10 +106,10 @@ class Serializer(object):
         if formats is not None:
             self.formats = formats
 
-        if self.formats is Serializer.formats and hasattr(settings, 'TASTYPIE_DEFAULT_FORMATS'):
-            # We want TASTYPIE_DEFAULT_FORMATS to override unmodified defaults but not intentational changes
+        if self.formats is Serializer.formats and hasattr(settings, 'TASTEFULPY_DEFAULT_FORMATS'):
+            # We want TASTEFULPY_DEFAULT_FORMATS to override unmodified defaults but not intentational changes
             # on Serializer subclasses:
-            self.formats = settings.TASTYPIE_DEFAULT_FORMATS
+            self.formats = settings.TASTEFULPY_DEFAULT_FORMATS
 
         if not isinstance(self.formats, (list, tuple)):
             raise ImproperlyConfigured('Formats should be a list or tuple, not %r' % self.formats)
@@ -137,7 +137,7 @@ class Serializer(object):
         A hook to control how datetimes are formatted.
 
         Can be overridden at the ``Serializer`` level (``datetime_formatting``)
-        or globally (via ``settings.TASTYPIE_DATETIME_FORMATTING``).
+        or globally (via ``settings.TASTEFULPY_DATETIME_FORMATTING``).
 
         Default is ``iso-8601``, which looks like "2010-12-16T03:02:14".
         """
@@ -155,7 +155,7 @@ class Serializer(object):
         A hook to control how dates are formatted.
 
         Can be overridden at the ``Serializer`` level (``datetime_formatting``)
-        or globally (via ``settings.TASTYPIE_DATETIME_FORMATTING``).
+        or globally (via ``settings.TASTEFULPY_DATETIME_FORMATTING``).
 
         Default is ``iso-8601``, which looks like "2010-12-16".
         """
@@ -169,7 +169,7 @@ class Serializer(object):
         A hook to control how times are formatted.
 
         Can be overridden at the ``Serializer`` level (``datetime_formatting``)
-        or globally (via ``settings.TASTYPIE_DATETIME_FORMATTING``).
+        or globally (via ``settings.TASTEFULPY_DATETIME_FORMATTING``).
 
         Default is ``iso-8601``, which looks like "03:02:14".
         """
@@ -451,7 +451,7 @@ class Serializer(object):
         if yaml is None:
             raise ImproperlyConfigured("Usage of the YAML aspects requires yaml.")
 
-        return yaml.load(content, Loader=TastypieLoader)
+        return yaml.load(content, Loader=TastefulpyLoader)
 
     def to_plist(self, data, options=None):
         """

@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
-from tastypie.exceptions import TastypieError, Unauthorized
-from tastypie.compat import get_module_name
+from tastefulpy.exceptions import TastefulpyError, Unauthorized
+from tastefulpy.compat import get_module_name
 
 class Authorization(object):
     """
@@ -21,7 +21,7 @@ class Authorization(object):
 
         FIXME: REMOVE BEFORE 1.0
         """
-        raise TastypieError("Authorization classes no longer support `apply_limits`. Please update to using `read_list`.")
+        raise TastefulpyError("Authorization classes no longer support `apply_limits`. Please update to using `read_list`.")
 
     def read_list(self, object_list, bundle):
         """
@@ -44,10 +44,10 @@ class Authorization(object):
 
     def create_list(self, object_list, bundle):
         """
-        Unimplemented, as Tastypie never creates entire new lists, but
+        Unimplemented, as Tastefulpy never creates entire new lists, but
         present for consistency & possible extension.
         """
-        raise NotImplementedError("Tastypie has no way to determine if all objects should be allowed to be created.")
+        raise NotImplementedError("Tastefulpy has no way to determine if all objects should be allowed to be created.")
 
     def create_detail(self, object_list, bundle):
         """

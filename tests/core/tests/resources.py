@@ -18,17 +18,17 @@ from django.test import TestCase
 from django.utils.encoding import force_text
 from django.utils import six
 
-from tastypie.authentication import BasicAuthentication
-from tastypie.authorization import Authorization
-from tastypie.bundle import Bundle
-from tastypie.exceptions import InvalidFilterError, InvalidSortError, ImmediateHttpResponse, BadRequest, NotFound
-from tastypie import fields
-from tastypie.paginator import Paginator
-from tastypie.resources import Resource, ModelResource, ALL, ALL_WITH_RELATIONS, convert_post_to_put, convert_post_to_patch
-from tastypie.serializers import Serializer
-from tastypie.throttle import CacheThrottle
-from tastypie.utils import aware_datetime, make_naive
-from tastypie.validation import FormValidation
+from tastefulpy.authentication import BasicAuthentication
+from tastefulpy.authorization import Authorization
+from tastefulpy.bundle import Bundle
+from tastefulpy.exceptions import InvalidFilterError, InvalidSortError, ImmediateHttpResponse, BadRequest, NotFound
+from tastefulpy import fields
+from tastefulpy.paginator import Paginator
+from tastefulpy.resources import Resource, ModelResource, ALL, ALL_WITH_RELATIONS, convert_post_to_put, convert_post_to_patch
+from tastefulpy.serializers import Serializer
+from tastefulpy.throttle import CacheThrottle
+from tastefulpy.utils import aware_datetime, make_naive
+from tastefulpy.validation import FormValidation
 from core.models import Note, NoteWithEditor, Subject, MediaBit, AutoNowNote, DateRecord, Counter
 from core.tests.mocks import MockRequest
 from core.utils import SimpleHandler
@@ -1293,7 +1293,7 @@ class ModelResourceTestCase(TestCase):
             self.body_attr = "raw_post_data"
 
     @patch('django.core.signals.got_request_exception.send')
-    @patch('tastypie.resources.ModelResource.obj_get_list', side_effect=IOError)
+    @patch('tastefulpy.resources.ModelResource.obj_get_list', side_effect=IOError)
     def test_exception_handling(self, obj_get_list_mock, send_signal_mock):
         request = HttpRequest()
         request.method = 'GET'
@@ -4096,8 +4096,8 @@ class BustedResourceTestCase(TestCase):
         # We're going to heavily jack with settings. :/
         super(BustedResourceTestCase, self).setUp()
         self.old_debug = settings.DEBUG
-        self.old_full_debug = getattr(settings, 'TASTYPIE_FULL_DEBUG', False)
-        self.old_canned_error = getattr(settings, 'TASTYPIE_CANNED_ERROR', "Sorry, this request could not be processed. Please try again later.")
+        self.old_full_debug = getattr(settings, 'TASTEFULPY_FULL_DEBUG', False)
+        self.old_canned_error = getattr(settings, 'TASTEFULPY_CANNED_ERROR', "Sorry, this request could not be processed. Please try again later.")
         self.old_broken_links = getattr(settings, 'SEND_BROKEN_LINK_EMAILS', False)
 
         self.resource = BustedResource()
@@ -4107,14 +4107,14 @@ class BustedResourceTestCase(TestCase):
 
     def tearDown(self):
         settings.DEBUG = self.old_debug
-        settings.TASTYPIE_FULL_DEBUG = self.old_full_debug
-        settings.TASTYPIE_CANNED_ERROR = self.old_canned_error
+        settings.TASTEFULPY_FULL_DEBUG = self.old_full_debug
+        settings.TASTEFULPY_CANNED_ERROR = self.old_canned_error
         settings.SEND_BROKEN_LINK_EMAILS = self.old_broken_links
         super(BustedResourceTestCase, self).setUp()
 
     def test_debug_on_with_full(self):
         settings.DEBUG = True
-        settings.TASTYPIE_FULL_DEBUG = True
+        settings.TASTEFULPY_FULL_DEBUG = True
 
         try:
             resp = self.resource.wrap_view('get_list')(self.request, pk=1)
@@ -4124,7 +4124,7 @@ class BustedResourceTestCase(TestCase):
 
     def test_debug_on_without_full(self):
         settings.DEBUG = True
-        settings.TASTYPIE_FULL_DEBUG = False
+        settings.TASTEFULPY_FULL_DEBUG = False
         mail.outbox = []
 
         resp = self.resource.wrap_view('get_list')(self.request, pk=1)
@@ -4136,7 +4136,7 @@ class BustedResourceTestCase(TestCase):
 
     def test_debug_off(self):
         settings.DEBUG = False
-        settings.TASTYPIE_FULL_DEBUG = False
+        settings.TASTEFULPY_FULL_DEBUG = False
 
         if django.VERSION >= (1, 3, 0):
             SimpleHandler.logged = []
@@ -4153,7 +4153,7 @@ class BustedResourceTestCase(TestCase):
             self.assertEqual(len(SimpleHandler.logged), 1)
 
             # Now with a custom message.
-            settings.TASTYPIE_CANNED_ERROR = "Oops, you bwoke it."
+            settings.TASTEFULPY_CANNED_ERROR = "Oops, you bwoke it."
 
             resp = self.resource.wrap_view('get_list')(self.request, pk=1)
             self.assertEqual(resp.status_code, 500)
@@ -4182,7 +4182,7 @@ class BustedResourceTestCase(TestCase):
             self.assertEqual(len(mail.outbox), 2)
 
             # Now with a custom message.
-            settings.TASTYPIE_CANNED_ERROR = "Oops, you bwoke it."
+            settings.TASTEFULPY_CANNED_ERROR = "Oops, you bwoke it."
 
             resp = self.resource.wrap_view('get_list')(self.request, pk=1)
             self.assertEqual(resp.status_code, 500)
@@ -4197,7 +4197,7 @@ class BustedResourceTestCase(TestCase):
 
     def test_escaping(self):
         settings.DEBUG = True
-        settings.TASTYPIE_FULL_DEBUG = False
+        settings.TASTEFULPY_FULL_DEBUG = False
 
         request = HttpRequest()
         request.method = 'POST'

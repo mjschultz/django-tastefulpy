@@ -2,55 +2,55 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 
 
-class TastypieError(Exception):
-    """A base exception for other tastypie-related errors."""
+class TastefulpyError(Exception):
+    """A base exception for other tastefulpy-related errors."""
     pass
 
 
-class HydrationError(TastypieError):
+class HydrationError(TastefulpyError):
     """Raised when there is an error hydrating data."""
     pass
 
 
-class NotRegistered(TastypieError):
+class NotRegistered(TastefulpyError):
     """
     Raised when the requested resource isn't registered with the ``Api`` class.
     """
     pass
 
 
-class NotFound(TastypieError):
+class NotFound(TastefulpyError):
     """
     Raised when the resource/object in question can't be found.
     """
     pass
 
 
-class Unauthorized(TastypieError):
+class Unauthorized(TastefulpyError):
     """
     Raised when the request object is not accessible to the user.
 
-    This is different than the ``tastypie.http.HttpUnauthorized`` & is handled
+    This is different than the ``tastefulpy.http.HttpUnauthorized`` & is handled
     differently internally.
     """
     pass
 
 
-class ApiFieldError(TastypieError):
+class ApiFieldError(TastefulpyError):
     """
     Raised when there is a configuration error with a ``ApiField``.
     """
     pass
 
 
-class UnsupportedFormat(TastypieError):
+class UnsupportedFormat(TastefulpyError):
     """
     Raised when an unsupported serialization format is requested.
     """
     pass
 
 
-class BadRequest(TastypieError):
+class BadRequest(TastefulpyError):
     """
     A generalized exception for indicating incorrect request parameters.
 
@@ -60,7 +60,7 @@ class BadRequest(TastypieError):
     pass
 
 
-class BlueberryFillingFound(TastypieError):
+class BlueberryFillingFound(TastefulpyError):
     pass
 
 
@@ -80,7 +80,7 @@ class InvalidSortError(BadRequest):
     pass
 
 
-class ImmediateHttpResponse(TastypieError):
+class ImmediateHttpResponse(TastefulpyError):
     """
     This exception is used to interrupt the flow of processing to immediately
     return a custom HttpResponse.

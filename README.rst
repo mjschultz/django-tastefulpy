@@ -1,5 +1,5 @@
 ===============
-django-tastypie
+django-tastefulpy
 ===============
 
 Creating delicious APIs for Django apps since 2010.
@@ -40,7 +40,7 @@ A basic example looks like:
 
     # myapp/api.py
     # ============
-    from tastypie.resources import ModelResource
+    from tastefulpy.resources import ModelResource
     from myapp.models import Entry
 
 
@@ -52,7 +52,7 @@ A basic example looks like:
     # urls.py
     # =======
     from django.conf.urls.defaults import *
-    from tastypie.api import Api
+    from tastefulpy.api import Api
     from myapp.api import EntryResource
 
     v1_api = Api(api_name='v1')
@@ -68,15 +68,15 @@ supports all CRUD operations in a RESTful way. JSON/XML/YAML support is already
 there, and it's easy to add related data/authentication/caching.
 
 You can find more in the documentation at
-http://django-tastypie.readthedocs.org/.
+http://django-tastefulpy.readthedocs.org/.
 
 
-Why Tastypie?
+Why Tastefulpy?
 =============
 
 There are other, better known API frameworks out there for Django. You need to
 assess the options available and decide for yourself. That said, here are some
-common reasons for tastypie.
+common reasons for tastefulpy.
 
 * You need an API that is RESTful and uses HTTP well.
 * You want to support deep relations.
@@ -92,8 +92,8 @@ common reasons for tastypie.
 Reference Material
 ==================
 
-* http://github.com/toastdriven/django-tastypie/tree/master/tests/basic shows
-  basic usage of tastypie
+* http://github.com/mjschultz/django-tastefulpy/tree/master/tests/basic shows
+  basic usage of tastefulpy
 * http://en.wikipedia.org/wiki/REST
 * http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 * http://www.ietf.org/rfc/rfc2616.txt
@@ -103,14 +103,14 @@ Reference Material
 Security
 ========
 
-Tastypie is committed to providing a flexible and secure API, and was designed
+Tastefulpy is committed to providing a flexible and secure API, and was designed
 with many security features and options in mind. Due to the complex nature of
 APIs and the constant discovery of new attack vectors and vulnerabilities,
 no software is immune to security holes. We rely on our community to report
 and help us investigate security issues.
 
 If you come across a security hole **please do not open a Github issue**.
-Instead, **drop us an email** at ``tastypie-security@googlegroups.com``
+Instead, **drop us an email** at ``tastefulpy-security@googlegroups.com``
 
 We'll then work together to investigate and resolve the problem so we can
 announce a solution along with the vulnerability.

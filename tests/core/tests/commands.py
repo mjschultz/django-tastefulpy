@@ -1,8 +1,8 @@
-from tastypie.compat import get_user_model
+from tastefulpy.compat import get_user_model
 from django.core.management import call_command
 from django.db import models
 from django.test import TestCase
-from tastypie.models import ApiKey, create_api_key
+from tastefulpy.models import ApiKey, create_api_key
 
 
 class BackfillApiKeysTestCase(TestCase):

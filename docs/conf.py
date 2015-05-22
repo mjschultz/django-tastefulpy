@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Tastypie documentation build configuration file, created by
+# Tastefulpy documentation build configuration file, created by
 # sphinx-quickstart on Sat May 22 21:44:34 2010.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -37,8 +37,8 @@ source_suffix = '.rst'
 master_doc = 'toc'
 
 # General information about the project.
-project = u'Tastypie'
-copyright = u'2010-2014, Daniel Lindsley & the Tastypie core team'
+project = u'Tastefulpy'
+copyright = u'2010-2014, Daniel Lindsley & the Tastefulpy core team'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -158,7 +158,7 @@ html_static_path = []
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Tastypiedoc'
+htmlhelp_basename = 'Tastefulpydoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -172,8 +172,8 @@ htmlhelp_basename = 'Tastypiedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Tastypie.tex', u'Tastypie Documentation',
-   u'Daniel Lindsley \\& the Tastypie core team', 'manual'),
+  ('index', 'Tastefulpy.tex', u'Tastefulpy Documentation',
+   u'Daniel Lindsley \\& the Tastefulpy core team', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -198,7 +198,7 @@ latex_documents = [
 # List of tuples (startdocname, targetname, title, author, dir_entry,
 # description, category, toctree_only)
 texinfo_documents=[(
-    master_doc, "django-tastypie", "", "", "Tastypie",
-    "Documentation of the Tastypie framework", "Web development", False
+    master_doc, "django-tastefulpy", "", "", "Tastefulpy",
+    "Documentation of the Tastefulpy framework", "Web development", False
 )]
 

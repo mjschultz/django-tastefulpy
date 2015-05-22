@@ -3,7 +3,7 @@ try:
 except ImportError: # Django < 1.4
     from django.conf.urls.defaults import *
 
-from tastypie.api import Api
+from tastefulpy.api import Api
 
 from related_resource.api.resources import NoteResource, UserResource, \
         CategoryResource, TagResource, TaggableTagResource, TaggableResource, \

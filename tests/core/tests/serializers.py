@@ -5,11 +5,11 @@ from decimal import Decimal
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
-from tastypie.bundle import Bundle
-from tastypie import fields
-from tastypie.exceptions import BadRequest
-from tastypie.serializers import Serializer
-from tastypie.resources import ModelResource
+from tastefulpy.bundle import Bundle
+from tastefulpy import fields
+from tastefulpy.exceptions import BadRequest
+from tastefulpy.serializers import Serializer
+from tastefulpy.resources import ModelResource
 from core.models import Note
 
 try:
@@ -72,11 +72,11 @@ class SerializerTestCase(TestCase):
         # When we drop support for Django 1.3 this boilerplate can be replaced with
         # a simple django.test.utils.override_settings decorator:
 
-        old_formats = getattr(settings, 'TASTYPIE_DEFAULT_FORMATS', None)
+        old_formats = getattr(settings, 'TASTEFULPY_DEFAULT_FORMATS', None)
 
         try:
             # Confirm that the setting will override the default values:
-            settings.TASTYPIE_DEFAULT_FORMATS = ('json', 'xml')
+            settings.TASTEFULPY_DEFAULT_FORMATS = ('json', 'xml')
             s = Serializer()
             self.assertEqual(list(s.formats), ['json', 'xml'])
             self.assertEqual(list(s.supported_formats), ['application/json', 'application/xml'])
@@ -92,9 +92,9 @@ class SerializerTestCase(TestCase):
 
         finally:
             if old_formats is None:
-                del settings.TASTYPIE_DEFAULT_FORMATS
+                del settings.TASTEFULPY_DEFAULT_FORMATS
             else:
-                settings.TASTYPIE_DEFAULT_FORMATS = old_formats
+                settings.TASTEFULPY_DEFAULT_FORMATS = old_formats
 
     def get_sample1(self):
         return {
@@ -130,26 +130,26 @@ class SerializerTestCase(TestCase):
         self.assertEqual(serializer.format_datetime(datetime.datetime(2010, 12, 16, 2, 31, 33)), '2010-12-16T02:31:33')
 
         # Stow.
-        old_format = getattr(settings, 'TASTYPIE_DATETIME_FORMATTING', 'iso-8601')
+        old_format = getattr(settings, 'TASTEFULPY_DATETIME_FORMATTING', 'iso-8601')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'iso-8601'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'iso-8601'
         serializer = Serializer()
         self.assertEqual(serializer.format_datetime(datetime.datetime(2010, 12, 16, 2, 31, 33)), '2010-12-16T02:31:33')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'iso-8601-strict'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'iso-8601-strict'
         serializer = Serializer()
         self.assertEqual(serializer.format_datetime(datetime.datetime(2010, 12, 16, 2, 31, 33, 10)), '2010-12-16T02:31:33')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'rfc-2822'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'rfc-2822'
         serializer = Serializer()
         self.assertEqual(serializer.format_datetime(datetime.datetime(2010, 12, 16, 2, 31, 33)), u'Thu, 16 Dec 2010 02:31:33 -0600')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'random-garbage'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'random-garbage'
         serializer = Serializer()
         self.assertEqual(serializer.format_datetime(datetime.datetime(2010, 12, 16, 2, 31, 33)), '2010-12-16T02:31:33')
 
         # Restore.
-        settings.TASTYPIE_DATETIME_FORMATTING = old_format
+        settings.TASTEFULPY_DATETIME_FORMATTING = old_format
 
     def test_format_date(self):
         serializer = Serializer()
@@ -165,22 +165,22 @@ class SerializerTestCase(TestCase):
         self.assertEqual(serializer.format_date(datetime.date(2010, 12, 16)), '2010-12-16')
 
         # Stow.
-        old_format = getattr(settings, 'TASTYPIE_DATETIME_FORMATTING', 'iso-8601')
+        old_format = getattr(settings, 'TASTEFULPY_DATETIME_FORMATTING', 'iso-8601')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'iso-8601'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'iso-8601'
         serializer = Serializer()
         self.assertEqual(serializer.format_date(datetime.date(2010, 12, 16)), '2010-12-16')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'rfc-2822'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'rfc-2822'
         serializer = Serializer()
         self.assertEqual(serializer.format_date(datetime.date(2010, 12, 16)), u'16 Dec 2010')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'random-garbage'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'random-garbage'
         serializer = Serializer()
         self.assertEqual(serializer.format_date(datetime.date(2010, 12, 16)), '2010-12-16')
 
         # Restore.
-        settings.TASTYPIE_DATETIME_FORMATTING = old_format
+        settings.TASTEFULPY_DATETIME_FORMATTING = old_format
 
     def test_format_time(self):
         serializer = Serializer()
@@ -199,26 +199,26 @@ class SerializerTestCase(TestCase):
         self.assertEqual(serializer.format_time(datetime.time(2, 31, 33)), '02:31:33')
 
         # Stow.
-        old_format = getattr(settings, 'TASTYPIE_DATETIME_FORMATTING', 'iso-8601')
+        old_format = getattr(settings, 'TASTEFULPY_DATETIME_FORMATTING', 'iso-8601')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'iso-8601'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'iso-8601'
         serializer = Serializer()
         self.assertEqual(serializer.format_time(datetime.time(2, 31, 33)), '02:31:33')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'iso-8601-strict'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'iso-8601-strict'
         serializer = Serializer()
         self.assertEqual(serializer.format_time(datetime.time(2, 31, 33, 10)), '02:31:33')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'rfc-2822'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'rfc-2822'
         serializer = Serializer()
         self.assertEqual(serializer.format_time(datetime.time(2, 31, 33)), u'02:31:33 -0600')
 
-        settings.TASTYPIE_DATETIME_FORMATTING = 'random-garbage'
+        settings.TASTEFULPY_DATETIME_FORMATTING = 'random-garbage'
         serializer = Serializer()
         self.assertEqual(serializer.format_time(datetime.time(2, 31, 33)), '02:31:33')
 
         # Restore.
-        settings.TASTYPIE_DATETIME_FORMATTING = old_format
+        settings.TASTEFULPY_DATETIME_FORMATTING = old_format
 
     def test_to_xml(self):
         serializer = Serializer()

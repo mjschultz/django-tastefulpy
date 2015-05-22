@@ -4,7 +4,7 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
-from tastypie.compat import AUTH_USER_MODEL
+from tastefulpy.compat import AUTH_USER_MODEL
 
 
 class Migration(SchemaMigration):
@@ -12,12 +12,12 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         if not db.backend_name in ('mysql', 'sqlite'):
             # Adding index on 'ApiKey', fields ['key']
-            db.create_index('tastypie_apikey', ['key'])
+            db.create_index('tastefulpy_apikey', ['key'])
 
     def backwards(self, orm):
         if not db.backend_name in ('mysql', 'sqlite'):
             # Removing index on 'ApiKey', fields ['key']
-            db.delete_index('tastypie_apikey', ['key'])
+            db.delete_index('tastefulpy_apikey', ['key'])
 
     models = {
         'auth.group': {
@@ -56,7 +56,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'tastypie.apiaccess': {
+        'tastefulpy.apiaccess': {
             'Meta': {'object_name': 'ApiAccess'},
             'accessed': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -64,7 +64,7 @@ class Migration(SchemaMigration):
             'request_method': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '10', 'blank': 'True'}),
             'url': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255', 'blank': 'True'})
         },
-        'tastypie.apikey': {
+        'tastefulpy.apikey': {
             'Meta': {'object_name': 'ApiKey'},
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 11, 5, 0, 0)'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -73,4 +73,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['tastypie']
+    complete_apps = ['tastefulpy']

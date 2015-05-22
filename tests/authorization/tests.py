@@ -3,7 +3,7 @@ import json
 
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
-from tastypie.test import ResourceTestCase
+from tastefulpy.test import ResourceTestCase
 from .models import AuthorProfile, Article
 from .api.resources import PerUserAuthorization
 

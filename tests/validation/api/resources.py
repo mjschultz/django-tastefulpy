@@ -1,11 +1,11 @@
 from django.contrib.auth.models import User
-from tastypie import fields
-from tastypie.constants import ALL
-from tastypie.resources import ModelResource
-from tastypie.authorization import Authorization
+from tastefulpy import fields
+from tastefulpy.constants import ALL
+from tastefulpy.resources import ModelResource
+from tastefulpy.authorization import Authorization
 from basic.models import Note, AnnotatedNote, UserForm
 from django import forms
-from tastypie.validation import FormValidation
+from tastefulpy.validation import FormValidation
 
 # NOTES:
 # model defaults don't matter since we are not rendering a form, if you want to use a default exclude the field.

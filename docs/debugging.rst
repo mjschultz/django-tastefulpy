@@ -1,10 +1,10 @@
 .. ref-debugging:
 
 ==================
-Debugging Tastypie
+Debugging Tastefulpy
 ==================
 
-There are some common problems people run into when using Tastypie for the first
+There are some common problems people run into when using Tastefulpy for the first
 time. Some of the common problems and things to try appear below.
 
 
@@ -12,12 +12,12 @@ time. Some of the common problems and things to try appear below.
 ==============================================================
 
 This is actually not a bug and JSON support is present in your ``Resource``.
-This issue is that Tastypie respects the ``Accept`` header your browser sends.
+This issue is that Tastefulpy respects the ``Accept`` header your browser sends.
 Most browsers send something like::
 
     Accept: application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
 
-Note that ``application/xml`` comes first, which is a format that Tastypie
+Note that ``application/xml`` comes first, which is a format that Tastefulpy
 handles by default, hence why you receive XML.
 
 If you use ``curl`` from the command line, you should receive JSON by default::
@@ -25,7 +25,7 @@ If you use ``curl`` from the command line, you should receive JSON by default::
     curl http://localhost:8000/api/v1/
 
 If you want JSON in the browser, simply append ``?format=json`` to your URL.
-Tastypie always respects this override first, before it falls back to the
+Tastefulpy always respects this override first, before it falls back to the
 ``Accept`` header.
 
 
@@ -34,7 +34,7 @@ Tastypie always respects this override first, before it falls back to the
 
 You can view full schema for your resource through :ref:`schema-inspection`.
 
-In general, Tastypie will accept resources in the same format as it gives you.
+In general, Tastefulpy will accept resources in the same format as it gives you.
 This means that you can see what any POST or PUT should look like by
 performing a GET of that resource.
 
@@ -77,7 +77,7 @@ You can do this over an entire collection as well::
 
 More specifically, this specific ``DatabaseError``::
 
-    django.db.utils.DatabaseError: no such table: tastypie_apikey
+    django.db.utils.DatabaseError: no such table: tastefulpy_apikey
 
 This is a side effect of the (disabled by default) ``create_api_key`` signal
 as described in the :ref:`authentication` section of the

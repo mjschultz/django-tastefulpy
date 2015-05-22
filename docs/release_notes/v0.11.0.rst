@@ -3,13 +3,13 @@ v0.11.0
 
 :date: 2013-12-03
 
-This release is a bugfix release. This also fixes installing Tastypie
+This release is a bugfix release. This also fixes installing Tastefulpy
 on Python 3 (due to the ``python-mimeparse`` dependency change).
 
 This release is also the first to be released as a `Python wheel`_ as well. Ex::
 
     pip install wheel
-    pip install --use-wheel django-tastypie
+    pip install --use-wheel django-tastefulpy
 
 .. _`Python wheel`: http://wheel.readthedocs.org/
 
@@ -21,7 +21,7 @@ Bugfixes
 * Reduced the length of the ``ApiKey.key`` field to 128. (SHA: 1cdf2c4)
 * A bunch of test improvements. (SHA: 4320db4, SHA: f1bc584 & SHA: bd75a92)
 * Updated ``SimpleCache`` to the post-Django 1.3 world. (SHA: 4963d97)
-* Fixed a bug where ``tastypie.utils.timezone.now`` could throw an exception.
+* Fixed a bug where ``tastefulpy.utils.timezone.now`` could throw an exception.
   (SHA: b78175d)
 * Fixed the ``python-mimeparse`` dependency in ``setup.py``. (SHA: 26dc473)
 * Pinned to the beta of ``python3-digest``. (SHA: cc8ef0f)

@@ -2,10 +2,10 @@ from django.test import TestCase
 from django.http import HttpRequest
 from django.contrib.auth.models import User, Permission
 from core.models import Note
-from tastypie.authorization import Authorization, ReadOnlyAuthorization, DjangoAuthorization
-from tastypie.exceptions import Unauthorized
-from tastypie import fields
-from tastypie.resources import Resource, ModelResource
+from tastefulpy.authorization import Authorization, ReadOnlyAuthorization, DjangoAuthorization
+from tastefulpy.exceptions import Unauthorized
+from tastefulpy import fields
+from tastefulpy.resources import Resource, ModelResource
 
 
 class NoRulesNoteResource(ModelResource):

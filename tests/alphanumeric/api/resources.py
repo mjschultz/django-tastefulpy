@@ -1,6 +1,6 @@
-from tastypie.authorization import Authorization
-from tastypie.fields import CharField
-from tastypie.resources import ModelResource
+from tastefulpy.authorization import Authorization
+from tastefulpy.fields import CharField
+from tastefulpy.resources import ModelResource
 from alphanumeric.models import Product
 
 

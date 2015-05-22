@@ -6,10 +6,10 @@ Resources
 
 In terms of a REST-style architecture, a "resource" is a collection of similar
 data. This data could be a table of a database, a collection of other resources
-or a similar form of data storage. In Tastypie, these resources are generally
+or a similar form of data storage. In Tastefulpy, these resources are generally
 intermediaries between the end user & objects, usually Django models. As such,
 ``Resource`` (and its model-specific twin ``ModelResource``) form the heart of
-Tastypie's functionality.
+Tastefulpy's functionality.
 
 
 Quick Start
@@ -18,9 +18,9 @@ Quick Start
 A sample resource definition might look something like::
 
     from django.contrib.auth.models import User
-    from tastypie import fields
-    from tastypie.authorization import DjangoAuthorization
-    from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
+    from tastefulpy import fields
+    from tastefulpy.authorization import DjangoAuthorization
+    from tastefulpy.resources import ModelResource, ALL, ALL_WITH_RELATIONS
     from myapp.models import Entry
 
 
@@ -51,11 +51,11 @@ Why Class-Based?
 ================
 
 Using class-based resources make it easier to extend/modify the code to meet
-your needs. APIs are rarely a one-size-fits-all problem space, so Tastypie
+your needs. APIs are rarely a one-size-fits-all problem space, so Tastefulpy
 tries to get the fundamentals right and provide you with enough hooks to
 customize things to work your way.
 
-As is standard, this raises potential problems for thread-safety. Tastypie has
+As is standard, this raises potential problems for thread-safety. Tastefulpy has
 been designed to minimize the possibility of data "leaking" between threads.
 This does however sometimes introduce some small complexities & you should be
 careful not to store state on the instances if you're going to be using the
@@ -75,7 +75,7 @@ use cases for ``Resource`` knowing nothing about the ORM.
 Flow Through The Request/Response Cycle
 =======================================
 
-Tastypie can be thought of as a set of class-based views that provide the API
+Tastefulpy can be thought of as a set of class-based views that provide the API
 functionality. As such, many part of the request/response cycle are standard
 Django behaviors. For instance, all routing/middleware/response-handling aspects
 are the same as a typical Django app. Where it differs is in the view itself.
@@ -113,7 +113,7 @@ As an example, we'll walk through what a GET request to a list endpoint (say
   * Then it paginates the results using the supplied ``Paginator`` & pulls out
     the data to be serialized.
   * The objects in the page have ``full_dehydrate`` applied to each of them,
-    causing Tastypie to translate the raw object data into the fields the
+    causing Tastefulpy to translate the raw object data into the fields the
     endpoint supports.
   * Finally, it calls ``Resource.create_response``.
 
@@ -138,9 +138,9 @@ the user data & convert it to raw data for storage.
 Why Resource URIs?
 ==================
 
-Resource URIs play a heavy role in how Tastypie delivers data. This can seem
+Resource URIs play a heavy role in how Tastefulpy delivers data. This can seem
 very different from other solutions which simply inline related data. Though
-Tastypie can inline data like that (using ``full=True`` on the field with the
+Tastefulpy can inline data like that (using ``full=True`` on the field with the
 relation), the default is to provide URIs.
 
 URIs are useful because it results in smaller payloads, letting you fetch only
@@ -180,13 +180,13 @@ Advanced Data Preparation
 
 Not all data can be easily pulled off an object/model attribute. And sometimes,
 you (or the client) may need to send data that doesn't neatly fit back into the
-data model on the server side. For this, Tastypie has the "dehydrate/hydrate"
+data model on the server side. For this, Tastefulpy has the "dehydrate/hydrate"
 cycle.
 
 The Dehydrate Cycle
 -------------------
 
-Tastypie uses a "dehydrate" cycle to prepare data for serialization, which is
+Tastefulpy uses a "dehydrate" cycle to prepare data for serialization, which is
 to say that it takes the raw, potentially complicated data model & turns it
 into a (generally simpler) processed data structure for client consumption.
 This usually means taking a complex data object & turning it into a dictionary
@@ -317,9 +317,9 @@ This method should return a ``bundle``, whether it modifies the existing one or 
 The Hydrate Cycle
 -------------------
 
-Tastypie uses a "hydrate" cycle to take serializated data from the client
+Tastefulpy uses a "hydrate" cycle to take serializated data from the client
 and turn it into something the data model can use. This is the reverse process
-from the ``dehydrate`` cycle. In fact, by default, Tastypie's serialized data
+from the ``dehydrate`` cycle. In fact, by default, Tastefulpy's serialized data
 should be "round-trip-able", meaning the data that comes out should be able to
 be fed back in & result in the same original data model. This usually means
 taking a dictionary of simple data types & turning it into a complex data
@@ -413,7 +413,7 @@ The return value is put in the ``bundle.obj`` attribute for that fieldname.
 Reverse "Relationships"
 =======================
 
-Unlike Django's ORM, Tastypie does not automatically create reverse relations.
+Unlike Django's ORM, Tastefulpy does not automatically create reverse relations.
 This is because there is substantial technical complexity involved, as well as
 perhaps unintentionally exposing related data in an incorrect way to the end
 user of the API.
@@ -424,8 +424,8 @@ represents the full path to the desired class. Implementing a reverse
 relationship looks like so::
 
   # myapp/api/resources.py
-  from tastypie import fields
-  from tastypie.resources import ModelResource
+  from tastefulpy import fields
+  from tastefulpy.resources import ModelResource
   from myapp.models import Note, Comment
 
 
@@ -445,16 +445,16 @@ relationship looks like so::
 .. warning::
 
   Unlike Django, you can't use just the class name (i.e. ``'CommentResource'``),
-  even if it's in the same module. Tastypie (intentionally) lacks a construct
+  even if it's in the same module. Tastefulpy (intentionally) lacks a construct
   like the ``AppCache`` which makes that sort of thing work in Django. Sorry.
 
-Tastypie also supports self-referential relations. If you assume we added the
+Tastefulpy also supports self-referential relations. If you assume we added the
 appropriate self-referential ``ForeignKey`` to the ``Note`` model, implementing
-a similar relation in Tastypie would look like::
+a similar relation in Tastefulpy would look like::
 
   # myapp/api/resources.py
-  from tastypie import fields
-  from tastypie.resources import ModelResource
+  from tastefulpy import fields
+  from tastefulpy.resources import ModelResource
   from myapp.models import Note
 
 
@@ -475,31 +475,31 @@ The inner ``Meta`` class allows for class-level configuration of how the
 --------------
 
   Controls which serializer class the ``Resource`` should use. Default is
-  ``tastypie.serializers.Serializer()``.
+  ``tastefulpy.serializers.Serializer()``.
 
 ``authentication``
 ------------------
 
   Controls which authentication class the ``Resource`` should use. Default is
-  ``tastypie.authentication.Authentication()``.
+  ``tastefulpy.authentication.Authentication()``.
 
 ``authorization``
 -----------------
 
   Controls which authorization class the ``Resource`` should use. Default is
-  ``tastypie.authorization.ReadOnlyAuthorization()``.
+  ``tastefulpy.authorization.ReadOnlyAuthorization()``.
 
 ``validation``
 --------------
 
   Controls which validation class the ``Resource`` should use. Default is
-  ``tastypie.validation.Validation()``.
+  ``tastefulpy.validation.Validation()``.
 
 ``paginator_class``
 -------------------
 
   Controls which paginator class the ``Resource`` should use. Default is
-  ``tastypie.paginator.Paginator``.
+  ``tastefulpy.paginator.Paginator``.
 
 .. note::
 
@@ -511,13 +511,13 @@ The inner ``Meta`` class allows for class-level configuration of how the
 ---------
 
   Controls which cache class the ``Resource`` should use. Default is
-  ``tastypie.cache.NoCache()``.
+  ``tastefulpy.cache.NoCache()``.
 
 ``throttle``
 ------------
 
   Controls which throttle class the ``Resource`` should use. Default is
-  ``tastypie.throttle.BaseThrottle()``.
+  ``tastefulpy.throttle.BaseThrottle()``.
 
 ``allowed_methods``
 -------------------
@@ -680,12 +680,12 @@ The inner ``Meta`` class allows for class-level configuration of how the
 Basic Filtering
 ===============
 
-:class:`~tastypie.resources.ModelResource` provides a basic Django ORM filter
+:class:`~tastefulpy.resources.ModelResource` provides a basic Django ORM filter
 interface. Simply list the resource fields which you'd like to filter on and
 the allowed expression in a `filtering` property of your resource's Meta
 class::
 
-    from tastypie.constants import ALL, ALL_WITH_RELATIONS
+    from tastefulpy.constants import ALL, ALL_WITH_RELATIONS
 
     class MyResource(ModelResource):
         class Meta:
@@ -696,7 +696,7 @@ class::
 
 Valid filtering values are: `Django ORM filters`_ (e.g. ``startswith``,
 ``exact``, ``lte``, etc.) or the ``ALL`` or ``ALL_WITH_RELATIONS`` constants
-defined in :mod:`tastypie.constants`.
+defined in :mod:`tastefulpy.constants`.
 
 .. _Django ORM filters: https://docs.djangoproject.com/en/dev/ref/models/querysets/#field-lookups
 
@@ -713,8 +713,8 @@ Advanced Filtering
 If you need to filter things other than ORM resources or wish to apply
 additional constraints (e.g. text filtering using `django-haystack
 <http://haystacksearch.org/>`_ rather than simple database queries) your
-:class:`~tastypie.resources.Resource` may define a custom
-:meth:`~tastypie.resource.Resource.build_filters` method which allows you to
+:class:`~tastefulpy.resources.Resource` may define a custom
+:meth:`~tastefulpy.resource.Resource.build_filters` method which allows you to
 filter the queryset before processing a request::
 
     from haystack.query import SearchQuerySet
@@ -820,7 +820,7 @@ a URLconf should you choose to.
 
 Used to determine the desired format.
 
-Largely relies on ``tastypie.utils.mime.determine_format`` but here
+Largely relies on ``tastefulpy.utils.mime.determine_format`` but here
 as a point of extension.
 
 ``serialize``

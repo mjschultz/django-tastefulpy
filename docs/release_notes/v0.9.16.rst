@@ -4,7 +4,7 @@ v0.9.16
 :date: 2013-08-03
 
 This release is a bugfix release, the last one before Python 3 support will be
-added. This is the final release of Tastypie that is compatible with Django 1.4.
+added. This is the final release of Tastefulpy that is compatible with Django 1.4.
 
 
 Features

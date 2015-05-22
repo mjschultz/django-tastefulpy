@@ -3,7 +3,7 @@ import email
 import datetime
 import time
 from django.utils import dateformat
-from tastypie.utils.timezone import make_aware, make_naive, aware_datetime
+from tastefulpy.utils.timezone import make_aware, make_naive, aware_datetime
 
 # Try to use dateutil for maximum date-parsing niceness. Fall back to
 # hard-coded RFC2822 parsing if that's not possible.

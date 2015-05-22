@@ -14,7 +14,7 @@ BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.normpath(os.path.join(BASE_PATH, 'media'))
 
 DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'tastypie.db'
+DATABASE_NAME = 'tastefulpy.db'
 TEST_DATABASE_NAME = ''
 
 # for forwards compatibility
@@ -30,7 +30,7 @@ DATABASES = {
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'tastypie',
+    'tastefulpy',
 ]
 
 DEBUG = True
@@ -58,7 +58,7 @@ LOGGING = {
     },
 }
 
-TASTYPIE_FULL_DEBUG = False
+TASTEFULPY_FULL_DEBUG = False
 
 # to make sure timezones are handled correctly in Django>=1.4
 USE_TZ = True

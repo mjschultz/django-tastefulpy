@@ -2,11 +2,11 @@ from django.conf import settings
 from django.http import HttpRequest
 from django.test import TestCase
 from customuser.models import CustomUser
-from tastypie.models import ApiKey, create_api_key
+from tastefulpy.models import ApiKey, create_api_key
 from django import get_version as django_version
 from django.test import TestCase
-from tastypie.authentication import ApiKeyAuthentication
-from tastypie.http import HttpUnauthorized
+from tastefulpy.authentication import ApiKeyAuthentication
+from tastefulpy.http import HttpUnauthorized
 
 
 class CustomUserTestCase(TestCase):

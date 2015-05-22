@@ -8,7 +8,7 @@ Serialization can be one of the most contentious areas of an API. Everyone
 has their own requirements, their own preferred output format & the desire to
 have control over what is returned.
 
-As a result, Tastypie ships with a serializer that tries to meet the basic
+As a result, Tastefulpy ships with a serializer that tries to meet the basic
 needs of most use cases, and the flexibility to go outside of that when you
 need to.
 
@@ -20,8 +20,8 @@ classes unless otherwise specified. The following code is identical to the
 defaults but demonstrate how you could use your own serializer::
 
     from django.contrib.auth.models import User
-    from tastypie.resources import ModelResource
-    from tastypie.serializers import Serializer
+    from tastefulpy.resources import ModelResource
+    from tastefulpy.serializers import Serializer
 
 
     class UserResource(ModelResource):
@@ -46,7 +46,7 @@ The default ``Serializer`` supports the following formats:
 
 Not everyone wants to install or support all the serialization options. If you
 would like to customize the list of supported formats for your entire site
-the :ref:`TASTYPIE_DEFAULT_FORMATS setting <settings.TASTYPIE_DEFAULT_FORMATS>`
+the :ref:`TASTEFULPY_DEFAULT_FORMATS setting <settings.TASTEFULPY_DEFAULT_FORMATS>`
 allows you to set the default format list site-wide.
 
 If you wish to change the format list for a specific resource, you can pass the
@@ -54,8 +54,8 @@ list of supported formats using the ``formats=`` kwarg. For example, to provide
 only JSON & binary plist serialization::
 
     from django.contrib.auth.models import User
-    from tastypie.resources import ModelResource
-    from tastypie.serializers import Serializer
+    from tastefulpy.resources import ModelResource
+    from tastefulpy.serializers import Serializer
 
 
     class UserResource(ModelResource):
@@ -68,8 +68,8 @@ only JSON & binary plist serialization::
 Enabling the built-in (but disabled by default) JSONP support looks like::
 
     from django.contrib.auth.models import User
-    from tastypie.resources import ModelResource
-    from tastypie.serializers import Serializer
+    from tastefulpy.resources import ModelResource
+    from tastefulpy.serializers import Serializer
 
 
     class UserResource(ModelResource):
@@ -85,20 +85,20 @@ Serialization Security
 
 Deserialization of input from unknown or untrusted sources is an intrinsically
 risky endeavor and vulnerabilities are regularly found in popular format
-libraries. Tastypie adopts and recommends the following approach:
+libraries. Tastefulpy adopts and recommends the following approach:
 
 * Support the minimum required set of formats in your application.
   If you do not require a format, it's much safer to disable it
-  completely. See :ref:`TASTYPIE_DEFAULT_FORMATS setting <settings.TASTYPIE_DEFAULT_FORMATS>`.
+  completely. See :ref:`TASTEFULPY_DEFAULT_FORMATS setting <settings.TASTEFULPY_DEFAULT_FORMATS>`.
 * Some parsers offer additional safety check for use with untrusted content.
-  The standard Tastypie Serializer attempts to be secure by default using
+  The standard Tastefulpy Serializer attempts to be secure by default using
   features like PyYAML's
   `safe_load <http://pyyaml.org/wiki/PyYAMLDocumentation#LoadingYAML>`_ function
   and the defusedxml_ security wrapper for popular Python XML libraries.
 
   .. note::
 
-      Tastypie's precautions only apply to the default :class:`Serializer`. If
+      Tastefulpy's precautions only apply to the default :class:`Serializer`. If
       you have written your own serializer subclass we strongly recommend that
       you review your code to ensure that it uses the same precautions.
 
@@ -125,7 +125,7 @@ methods. So adding the server time to all output might look like so::
     import time
     import json
     from django.core.serializers.json import DjangoJSONEncoder
-    from tastypie.serializers import Serializer
+    from tastefulpy.serializers import Serializer
 
     class CustomJSONSerializer(Serializer):
         def to_json(self, data, options=None):
@@ -153,7 +153,7 @@ like::
 
     import csv
     import StringIO
-    from tastypie.serializers import Serializer
+    from tastefulpy.serializers import Serializer
 
 
     class CSVSerializer(Serializer):
@@ -223,7 +223,7 @@ If not available on the current ``Serializer``, returns
 A hook to control how datetimes are formatted.
 
 Can be overridden at the ``Serializer`` level (``datetime_formatting``)
-or globally (via ``settings.TASTYPIE_DATETIME_FORMATTING``).
+or globally (via ``settings.TASTEFULPY_DATETIME_FORMATTING``).
 
 Default is ``iso-8601``, which looks like "2010-12-16T03:02:14".
 
@@ -235,7 +235,7 @@ Default is ``iso-8601``, which looks like "2010-12-16T03:02:14".
 A hook to control how dates are formatted.
 
 Can be overridden at the ``Serializer`` level (``datetime_formatting``)
-or globally (via ``settings.TASTYPIE_DATETIME_FORMATTING``).
+or globally (via ``settings.TASTEFULPY_DATETIME_FORMATTING``).
 
 Default is ``iso-8601``, which looks like "2010-12-16".
 
@@ -247,7 +247,7 @@ Default is ``iso-8601``, which looks like "2010-12-16".
 A hook to control how times are formatted.
 
 Can be overridden at the ``Serializer`` level (``datetime_formatting``)
-or globally (via ``settings.TASTYPIE_DATETIME_FORMATTING``).
+or globally (via ``settings.TASTEFULPY_DATETIME_FORMATTING``).
 
 Default is ``iso-8601``, which looks like "03:02:14".
 

@@ -1,7 +1,7 @@
 import datetime
 from django.contrib.auth.models import User
 from django.db import models
-from tastypie.utils import now, aware_datetime
+from tastefulpy.utils import now, aware_datetime
 
 
 class DateRecord(models.Model):

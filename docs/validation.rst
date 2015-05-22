@@ -20,8 +20,8 @@ Using these classes is simple. Simply provide them (or your own class) as a
 ``Meta`` option to the ``Resource`` in question. For example::
 
     from django.contrib.auth.models import User
-    from tastypie.validation import Validation
-    from tastypie.resources import ModelResource
+    from tastefulpy.validation import Validation
+    from tastefulpy.resources import ModelResource
 
 
     class UserResource(ModelResource):
@@ -36,7 +36,7 @@ Using these classes is simple. Simply provide them (or your own class) as a
 Validation Options
 ==================
 
-Tastypie ships with the following ``Validation`` classes:
+Tastefulpy ships with the following ``Validation`` classes:
 
 ``Validation``
 ~~~~~~~~~~~~~~
@@ -51,7 +51,7 @@ This is the default class hooked up to ``Resource/ModelResource``.
 
 A more complex form of validation, this class accepts a ``form_class`` argument
 to its constructor. You supply a Django ``Form`` (or ``ModelForm``, though
-``save`` will never get called) and Tastypie will verify the ``data`` in the
+``save`` will never get called) and Tastefulpy will verify the ``data`` in the
 ``Bundle`` against the form.
 
 This class **DOES NOT** alter the data sent, only verifies it. If you
@@ -90,7 +90,7 @@ Implementing your own ``Validation`` classes is a simple process. The
 constructor can take whatever ``**kwargs`` it needs (if any). The only other
 method to implement is the ``is_valid`` method::
 
-    from tastypie.validation import Validation
+    from tastefulpy.validation import Validation
 
 
     class AwesomeValidation(Validation):

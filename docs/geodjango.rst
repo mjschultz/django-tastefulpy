@@ -4,7 +4,7 @@
 GeoDjango
 =========
 
-Tastypie features support for GeoDjango!  Resources return and accept 
+Tastefulpy features support for GeoDjango!  Resources return and accept 
 `GeoJSON <http://geojson.org/geojson-spec.html>`_ (or similarly-formatted
 analogs for other formats) and all `spatial lookup <https://docs.djangoproject.com/en/1.3/ref/contrib/gis/geoquerysets/#spatial-lookups>`_ filters are supported.  Distance lookups are not yet supported.
 
@@ -24,9 +24,9 @@ regions::
         objects = models.GeoManager()
 
 To define a resource that takes advantage of the geospatial features,
-we use ``tastypie.contrib.gis.resources.ModelResource``::
+we use ``tastefulpy.contrib.gis.resources.ModelResource``::
 
-    from tastypie.contrib.gis.resources import ModelResource
+    from tastefulpy.contrib.gis.resources import ModelResource
 
     class GeoNoteResource(ModelResource):
         class Meta:

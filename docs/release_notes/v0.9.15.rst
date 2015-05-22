@@ -3,7 +3,7 @@ v0.9.15
 
 :date: 2013-05-02
 
-This release is primarily a bugfix release. It makes using Tastypie with
+This release is primarily a bugfix release. It makes using Tastefulpy with
 Django 1.5 more friendly, better exceptions
 
 
@@ -11,8 +11,8 @@ Features
 --------
 
 * Drops Python 2.5 support. Yes, this is a feature that will pave the way for
-  Tastypie on Python 3 support.
-* Added ``TASTYPIE_ABSTRACT_APIKEY``, which allows switching the ``ApiKey``
+  Tastefulpy on Python 3 support.
+* Added ``TASTEFULPY_ABSTRACT_APIKEY``, which allows switching the ``ApiKey``
   model out. (SHA: b8f4b9c)
 
 

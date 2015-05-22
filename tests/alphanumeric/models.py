@@ -1,6 +1,6 @@
 import datetime
 from django.db import models
-from tastypie.utils import now
+from tastefulpy.utils import now
 
 
 class Product(models.Model):

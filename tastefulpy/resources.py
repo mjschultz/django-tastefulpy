@@ -17,21 +17,21 @@ from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.html import escape
 from django.utils import six
 
-from tastypie.authentication import Authentication
-from tastypie.authorization import ReadOnlyAuthorization
-from tastypie.bundle import Bundle
-from tastypie.cache import NoCache
-from tastypie.constants import ALL, ALL_WITH_RELATIONS
-from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse, Unauthorized
-from tastypie import fields
-from tastypie import http
-from tastypie.paginator import Paginator
-from tastypie.serializers import Serializer
-from tastypie.throttle import BaseThrottle
-from tastypie.utils import is_valid_jsonp_callback_value, dict_strip_unicode_keys, trailing_slash
-from tastypie.utils.mime import determine_format, build_content_type
-from tastypie.validation import Validation
-from tastypie.compat import get_module_name, atomic_decorator
+from tastefulpy.authentication import Authentication
+from tastefulpy.authorization import ReadOnlyAuthorization
+from tastefulpy.bundle import Bundle
+from tastefulpy.cache import NoCache
+from tastefulpy.constants import ALL, ALL_WITH_RELATIONS
+from tastefulpy.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse, Unauthorized
+from tastefulpy import fields
+from tastefulpy import http
+from tastefulpy.paginator import Paginator
+from tastefulpy.serializers import Serializer
+from tastefulpy.throttle import BaseThrottle
+from tastefulpy.utils import is_valid_jsonp_callback_value, dict_strip_unicode_keys, trailing_slash
+from tastefulpy.utils.mime import determine_format, build_content_type
+from tastefulpy.validation import Validation
+from tastefulpy.compat import get_module_name, atomic_decorator
 
 # If ``csrf_exempt`` isn't present, stub it.
 try:
@@ -132,7 +132,7 @@ class DeclarativeMetaclass(type):
 
         for field_name, obj in attrs.copy().items():
             # Look for ``dehydrated_type`` instead of doing ``isinstance``,
-            # which can break down if Tastypie is re-namespaced as something
+            # which can break down if Tastefulpy is re-namespaced as something
             # else.
             if hasattr(obj, 'dehydrated_type'):
                 field = attrs.pop(field_name)
@@ -235,7 +235,7 @@ class Resource(six.with_metaclass(DeclarativeMetaclass)):
                 # A real, non-expected exception.
                 # Handle the case where the full traceback is more helpful
                 # than the serialized error.
-                if settings.DEBUG and getattr(settings, 'TASTYPIE_FULL_DEBUG', False):
+                if settings.DEBUG and getattr(settings, 'TASTEFULPY_FULL_DEBUG', False):
                     raise
 
                 # Re-raise the error to get a proper traceback when the error
@@ -275,7 +275,7 @@ class Resource(six.with_metaclass(DeclarativeMetaclass)):
         send_broken_links = getattr(settings, 'SEND_BROKEN_LINK_EMAILS', False)
 
         if not response_code == 404 or send_broken_links:
-            log = logging.getLogger('django.request.tastypie')
+            log = logging.getLogger('django.request.tastefulpy')
             log.error('Internal Server Error: %s' % request.path, exc_info=True,
                       extra={'status_code': response_code, 'request': request})
 
@@ -284,7 +284,7 @@ class Resource(six.with_metaclass(DeclarativeMetaclass)):
 
         # Prep the data going out.
         data = {
-            "error_message": getattr(settings, 'TASTYPIE_CANNED_ERROR', "Sorry, this request could not be processed. Please try again later."),
+            "error_message": getattr(settings, 'TASTEFULPY_CANNED_ERROR', "Sorry, this request could not be processed. Please try again later."),
         }
         return self.error_response(request, data, response_class=response_class)
 
@@ -345,7 +345,7 @@ class Resource(six.with_metaclass(DeclarativeMetaclass)):
         """
         Used to determine the desired format.
 
-        Largely relies on ``tastypie.utils.mime.determine_format`` but here
+        Largely relies on ``tastefulpy.utils.mime.determine_format`` but here
         as a point of extension.
         """
         return determine_format(request, self._meta.serializer, default_format=self._meta.default_format)
@@ -908,7 +908,7 @@ class Resource(six.with_metaclass(DeclarativeMetaclass)):
                     elif not getattr(field_object, 'is_m2m', False):
                         if value is not None:
                             # NOTE: A bug fix in Django (ticket #18153) fixes incorrect behavior
-                            # which Tastypie was relying on.  To fix this, we store value.obj to
+                            # which Tastefulpy was relying on.  To fix this, we store value.obj to
                             # be saved later in save_related.
                             try:
                                 setattr(bundle.obj, field_object.attribute, value.obj)

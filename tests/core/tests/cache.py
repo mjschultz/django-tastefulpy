@@ -4,7 +4,7 @@ import time
 from django.core.cache import cache
 from django.test import TestCase
 
-from tastypie.cache import NoCache, SimpleCache
+from tastefulpy.cache import NoCache, SimpleCache
 
 
 class NoCacheTestCase(TestCase):

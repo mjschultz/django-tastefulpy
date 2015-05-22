@@ -5,8 +5,8 @@ from django.core.cache import cache
 from django.test import TestCase
 from django.utils.encoding import force_text
 
-from tastypie.models import ApiAccess
-from tastypie.throttle import BaseThrottle, CacheThrottle, CacheDBThrottle
+from tastefulpy.models import ApiAccess
+from tastefulpy.throttle import BaseThrottle, CacheThrottle, CacheDBThrottle
 
 
 class NoThrottleTestCase(TestCase):
@@ -76,7 +76,7 @@ class CacheThrottleTestCase(TestCase):
         # Test the timeframe.
         ret_time = time.time() + throttle_1.timeframe + 1
         
-        with mock.patch('tastypie.throttle.time') as mocked_time:
+        with mock.patch('tastefulpy.throttle.time') as mocked_time:
             mocked_time.time.return_value = ret_time
             self.assertEqual(throttle_1.should_be_throttled('daniel'), False)
             self.assertEqual(len(cache.get('daniel_accesses')), 0)
@@ -133,7 +133,7 @@ class CacheDBThrottleTestCase(TestCase):
         # Test the timeframe.
         ret_time = time.time() + throttle_1.timeframe + 1
         
-        with mock.patch('tastypie.throttle.time') as mocked_time:
+        with mock.patch('tastefulpy.throttle.time') as mocked_time:
             mocked_time.time.return_value = ret_time
             self.assertEqual(throttle_1.should_be_throttled('daniel'), False)
         self.assertEqual(len(cache.get('daniel_accesses')), 0)

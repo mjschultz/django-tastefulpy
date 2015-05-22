@@ -5,7 +5,7 @@ Api
 ===
 
 In terms of a REST-style architecture, the "api" is a collection of resources.
-In Tastypie, the ``Api`` gathers together the ``Resources`` & provides a nice
+In Tastefulpy, the ``Api`` gathers together the ``Resources`` & provides a nice
 way to use them as a set. It handles many of the URLconf details for you,
 provides a helpful "top-level" view to show what endpoints are available &
 some extra URL resolution juice.
@@ -17,7 +17,7 @@ Quick Start
 A sample api definition might look something like (usually located in a
 URLconf)::
 
-    from tastypie.api import Api
+    from tastefulpy.api import Api
     from myapp.api.resources import UserResource, EntryResource
 
     v1_api = Api(api_name='v1')

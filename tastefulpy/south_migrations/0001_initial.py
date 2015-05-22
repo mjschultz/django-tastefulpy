@@ -4,7 +4,7 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
-from tastypie.compat import AUTH_USER_MODEL
+from tastefulpy.compat import AUTH_USER_MODEL
 
 
 class Migration(SchemaMigration):
@@ -12,32 +12,32 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Adding model 'ApiAccess'
-        db.create_table('tastypie_apiaccess', (
+        db.create_table('tastefulpy_apiaccess', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('identifier', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('url', self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True)),
             ('request_method', self.gf('django.db.models.fields.CharField')(default='', max_length=10, blank=True)),
             ('accessed', self.gf('django.db.models.fields.PositiveIntegerField')()),
         ))
-        db.send_create_signal('tastypie', ['ApiAccess'])
+        db.send_create_signal('tastefulpy', ['ApiAccess'])
 
         # Adding model 'ApiKey'
-        db.create_table('tastypie_apikey', (
+        db.create_table('tastefulpy_apikey', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(related_name='api_key', unique=True, to=orm[AUTH_USER_MODEL])),
             ('key', self.gf('django.db.models.fields.CharField')(default='', max_length=256, blank=True)),
             ('created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
         ))
-        db.send_create_signal('tastypie', ['ApiKey'])
+        db.send_create_signal('tastefulpy', ['ApiKey'])
 
 
     def backwards(self, orm):
 
         # Deleting model 'ApiAccess'
-        db.delete_table('tastypie_apiaccess')
+        db.delete_table('tastefulpy_apiaccess')
 
         # Deleting model 'ApiKey'
-        db.delete_table('tastypie_apikey')
+        db.delete_table('tastefulpy_apikey')
 
 
     models = {
@@ -77,7 +77,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'tastypie.apiaccess': {
+        'tastefulpy.apiaccess': {
             'Meta': {'object_name': 'ApiAccess'},
             'accessed': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -85,7 +85,7 @@ class Migration(SchemaMigration):
             'request_method': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '10', 'blank': 'True'}),
             'url': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255', 'blank': 'True'})
         },
-        'tastypie.apikey': {
+        'tastefulpy.apikey': {
             'Meta': {'object_name': 'ApiKey'},
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -94,4 +94,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['tastypie']
+    complete_apps = ['tastefulpy']

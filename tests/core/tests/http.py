@@ -1,6 +1,6 @@
 # Basically just a sanity check to make sure things don't change from underneath us.
 from django.test import TestCase
-from tastypie.http import *
+from tastefulpy.http import *
 
 
 class HttpTestCase(TestCase):

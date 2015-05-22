@@ -6,9 +6,9 @@ import re
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.utils import datetime_safe, importlib
 from django.utils import six
-from tastypie.bundle import Bundle
-from tastypie.exceptions import ApiFieldError, NotFound
-from tastypie.utils import dict_strip_unicode_keys, make_aware
+from tastefulpy.bundle import Bundle
+from tastefulpy.exceptions import ApiFieldError, NotFound
+from tastefulpy.utils import dict_strip_unicode_keys, make_aware
 
 
 class NOT_PROVIDED:
@@ -403,7 +403,7 @@ class RelatedField(ApiField):
     in different ways.
 
     The abstractions based around this are "leaky" in that, unlike the other
-    fields provided by ``tastypie``, these fields don't handle arbitrary objects
+    fields provided by ``tastefulpy``, these fields don't handle arbitrary objects
     very well. The subclasses use Django's ORM layer to make things go, though
     there is no ORM-specific code at this level.
     """
@@ -541,7 +541,7 @@ class RelatedField(ApiField):
         else:
             # We've got a bare class name here, which won't work (No AppCache
             # to rely on). Try to throw a useful error.
-            raise ImportError("Tastypie requires a Python-style path (<module.module.Class>) to lazy load related resources. Only given '%s'." % self.to)
+            raise ImportError("Tastefulpy requires a Python-style path (<module.module.Class>) to lazy load related resources. Only given '%s'." % self.to)
 
         self._to_class = getattr(module, class_name, None)
 

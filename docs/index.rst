@@ -1,7 +1,7 @@
-Welcome to Tastypie!
+Welcome to Tastefulpy!
 ====================
 
-Tastypie is a webservice API framework for Django. It provides a convenient,
+Tastefulpy is a webservice API framework for Django. It provides a convenient,
 yet powerful and highly customizable, abstraction for creating REST-style
 interfaces.
 
@@ -46,22 +46,22 @@ Getting Help
 ============
 
 There are two primary ways of getting help. We have a `mailing list`_ hosted at
-Google (http://groups.google.com/group/django-tastypie/) and an IRC channel
-(`#tastypie on irc.freenode.net`_) to get help, want to bounce idea or
+Google (http://groups.google.com/group/django-tastefulpy/) and an IRC channel
+(`#tastefulpy on irc.freenode.net`_) to get help, want to bounce idea or
 generally shoot the breeze.
 
-.. _`mailing list`: http://groups.google.com/group/django-tastypie/
-.. _#tastypie on irc.freenode.net: irc://irc.freenode.net/tastypie
+.. _`mailing list`: http://groups.google.com/group/django-tastefulpy/
+.. _#tastefulpy on irc.freenode.net: irc://irc.freenode.net/tastefulpy
 
 
 Quick Start
 ===========
 
-1. Add ``tastypie`` to ``INSTALLED_APPS``.
+1. Add ``tastefulpy`` to ``INSTALLED_APPS``.
 2. Create an ``api`` directory in your app with a bare ``__init__.py``.
 3. Create an ``<my_app>/api/resources.py`` file and place the following in it::
 
-    from tastypie.resources import ModelResource
+    from tastefulpy.resources import ModelResource
     from my_app.models import MyModel
 
 
@@ -72,7 +72,7 @@ Quick Start
 
 4. In your root URLconf, add the following code (around where the admin code might be)::
 
-    from tastypie.api import Api
+    from tastefulpy.api import Api
     from my_app.api.resources import MyModelResource
 
     v1_api = Api(api_name='v1')
@@ -90,7 +90,7 @@ Quick Start
 Requirements
 ============
 
-Tastypie requires the following modules. If you use Pip_, you can install
+Tastefulpy requires the following modules. If you use Pip_, you can install
 the necessary bits via the included ``requirements.txt``:
 
 Required
@@ -111,12 +111,12 @@ Optional
 .. _Pip: http://pip.openplans.org/
 
 
-Why Tastypie?
+Why Tastefulpy?
 =============
 
 There are other, better known API frameworks out there for Django. You need to
 assess the options available and decide for yourself. That said, here are some
-common reasons for tastypie.
+common reasons for tastefulpy.
 
 * You need an API that is RESTful and uses HTTP well.
 * You want to support deep relations.
@@ -132,8 +132,8 @@ common reasons for tastypie.
 Reference Material
 ==================
 
-* http://github.com/toastdriven/django-tastypie/tree/master/tests/basic shows
-  basic usage of tastypie
+* http://github.com/mjschultz/django-tastefulpy/tree/master/tests/basic shows
+  basic usage of tastefulpy
 * http://en.wikipedia.org/wiki/REST
 * http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 * http://www.ietf.org/rfc/rfc2616.txt
@@ -143,10 +143,10 @@ Reference Material
 Running The Tests
 =================
 
-The easiest way to get setup to run Tastypie's tests looks like::
+The easiest way to get setup to run Tastefulpy's tests looks like::
 
-  $ git clone https://github.com/toastdriven/django-tastypie.git
-  $ cd django-tastypie
+  $ git clone https://github.com/mjschultz/django-tastefulpy.git
+  $ cd django-tastefulpy
   $ virtualenv env
   $ . env/bin/activate
   $ ./env/bin/pip install -U -r requirements.txt
@@ -158,10 +158,10 @@ Then running the tests is as simple as::
   $ ./env/bin/pip install tox
   $ tox
 
-Tastypie is maintained with all tests passing at all times for released
+Tastefulpy is maintained with all tests passing at all times for released
 dependencies. (At times tests may fail with development versions of Django.
 These will be noted as allowed failures in the ``.travis.yml`` file.) If you
 find a failure, please `report it`_ along with the versions of the installed
 software.
 
-.. _`report it`: https://github.com/toastdriven/django-tastypie/issues
+.. _`report it`: https://github.com/mjschultz/django-tastefulpy/issues

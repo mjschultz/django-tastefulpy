@@ -12,8 +12,8 @@ except ImportError:
 from django.contrib.gis.db.models import GeometryField
 from django.contrib.gis.geos import GEOSGeometry
 
-from tastypie.fields import ApiField, CharField
-from tastypie import resources
+from tastefulpy.fields import ApiField, CharField
+from tastefulpy import resources
 
 
 class GeometryApiField(ApiField):
@@ -41,7 +41,7 @@ class GeometryApiField(ApiField):
             return value
 
         # Get ready-made geojson serialization and then convert it _back_ to
-        # a Python object so that tastypie can serialize it as part of the
+        # a Python object so that tastefulpy can serialize it as part of the
         # bundle.
         return json.loads(value.geojson)
 

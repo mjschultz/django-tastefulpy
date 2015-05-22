@@ -6,7 +6,7 @@ _build
 dist
 build
 MANIFEST
-tests/tastypie.db
+tests/tastefulpy.db
 .buildinfo
 .tox
 env

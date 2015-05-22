@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
-from tastypie.bundle import Bundle
-from tastypie.resources import ModelResource
-from tastypie.exceptions import NotFound
+from tastefulpy.bundle import Bundle
+from tastefulpy.resources import ModelResource
+from tastefulpy.exceptions import NotFound
 from django.core.urlresolvers import resolve, Resolver404, get_script_prefix
 
 

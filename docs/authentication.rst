@@ -17,8 +17,8 @@ Using these classes is simple. Simply provide them (or your own class) as a
 ``Meta`` option to the ``Resource`` in question. For example::
 
     from django.contrib.auth.models import User
-    from tastypie.authentication import BasicAuthentication
-    from tastypie.resources import ModelResource
+    from tastefulpy.authentication import BasicAuthentication
+    from tastefulpy.resources import ModelResource
 
 
     class UserResource(ModelResource):
@@ -33,11 +33,11 @@ Using these classes is simple. Simply provide them (or your own class) as a
 Authentication Options
 ======================
 
-Tastypie ships with the following ``Authentication`` classes:
+Tastefulpy ships with the following ``Authentication`` classes:
 
 .. warning:
 
-    Tastypie, when used with ``django.contrib.auth.models.User``, will check
+    Tastefulpy, when used with ``django.contrib.auth.models.User``, will check
     to ensure that the ``User.is_active = True`` by default.
 
     You can disable this behavior by initializing your ``Authentication`` class
@@ -75,8 +75,8 @@ it is present) and their password should also correspond to that entry.
 
 As an alternative to requiring sensitive data like a password, the
 ``ApiKeyAuthentication`` allows you to collect just username & a
-machine-generated api key. Tastypie ships with a special ``Model`` just for
-this purpose, so you'll need to ensure ``tastypie`` is in ``INSTALLED_APPS`` and 
+machine-generated api key. Tastefulpy ships with a special ``Model`` just for
+this purpose, so you'll need to ensure ``tastefulpy`` is in ``INSTALLED_APPS`` and 
 that the model's database tables have been created (e.g. via ``django-admin.py syncdb``).
 
 To use this mechanism, the end user can either specify an ``Authorization``
@@ -90,12 +90,12 @@ Examples::
   # As GET params
   http://127.0.0.1:8000/api/v1/entries/?username=daniel&api_key=204db7bcfafb2deb7506b89eb3b9b715b09905c8
 
-Tastypie includes a signal function you can use to auto-create ``ApiKey``
+Tastefulpy includes a signal function you can use to auto-create ``ApiKey``
 objects. Hooking it up looks like::
 
     from django.contrib.auth.models import User
     from django.db import models
-    from tastypie.models import create_api_key
+    from tastefulpy.models import create_api_key
 
     models.signals.post_save.connect(create_api_key, sender=User)
 
@@ -109,12 +109,12 @@ objects. Hooking it up looks like::
 .. note::
 
    In some cases it may be useful to make the ``ApiKey`` model an `abstract
-   base class`_. To enable this, set ``settings.TASTYPIE_ABSTRACT_APIKEY`` to
+   base class`_. To enable this, set ``settings.TASTEFULPY_ABSTRACT_APIKEY`` to
    ``True``. See `the documentation for this setting`_ for more information.
 
 .. _`this post`: http://www.nerdydork.com/basic-authentication-on-mod_wsgi.html
 .. _`abstract base class`: https://docs.djangoproject.com/en/dev/topics/db/models/#abstract-base-classes
-.. _`the documentation for this setting`: http://django-tastypie.readthedocs.org/en/latest/settings.html#tastypie-abstract-apikey
+.. _`the documentation for this setting`: http://django-tastefulpy.readthedocs.org/en/latest/settings.html#tastefulpy-abstract-apikey
 
 ``SessionAuthentication``
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,7 +133,7 @@ have a valid CSRF token.
 This authentication scheme uses HTTP Digest Auth to check a user's
 credentials. The username is their ``django.contrib.auth.models.User``
 username (assuming it is present) and their password should be their
-machine-generated api key. As with ApiKeyAuthentication, ``tastypie``
+machine-generated api key. As with ApiKeyAuthentication, ``tastefulpy``
 should be included in ``INSTALLED_APPS``.
 
 .. warning::
@@ -174,9 +174,9 @@ This authentication class actually wraps any number of other authentication clas
 attempting each until successfully authenticating. For example::
 
     from django.contrib.auth.models import User
-    from tastypie.authentication import BasicAuthentication, ApiKeyAuthentication, MultiAuthentication
-    from tastypie.authorization import DjangoAuthorization
-    from tastypie.resources import ModelResource
+    from tastefulpy.authentication import BasicAuthentication, ApiKeyAuthentication, MultiAuthentication
+    from tastefulpy.authorization import DjangoAuthorization
+    from tastefulpy.resources import ModelResource
 
     class UserResource(ModelResource):
         class Meta:
@@ -198,7 +198,7 @@ Implementing your own ``Authentication`` classes is a simple
 process. ``Authentication`` has two methods to override (one of which is
 optional but recommended to be customized)::
 
-    from tastypie.authentication import Authentication
+    from tastefulpy.authentication import Authentication
 
 
     class SillyAuthentication(Authentication):

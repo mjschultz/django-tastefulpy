@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.db import models
 from django.template.defaultfilters import slugify
-from tastypie.utils.timezone import now
+from tastefulpy.utils.timezone import now
 
 
 class AuthorProfile(models.Model):

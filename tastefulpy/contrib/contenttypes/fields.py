@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 from functools import partial
-from tastypie import fields
-from tastypie.resources import Resource
-from tastypie.exceptions import ApiFieldError
+from tastefulpy import fields
+from tastefulpy.resources import Resource
+from tastefulpy.exceptions import ApiFieldError
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 from .resources import GenericResource
@@ -23,7 +23,7 @@ class GenericForeignKeyField(fields.ToOneField):
 
         for k, v in to.items():
             if not issubclass(k, models.Model) or not issubclass(v, Resource):
-                raise ValueError('to field must map django models to tastypie resources')
+                raise ValueError('to field must map django models to tastefulpy resources')
 
         super(GenericForeignKeyField, self).__init__(to, attribute, **kwargs)
 

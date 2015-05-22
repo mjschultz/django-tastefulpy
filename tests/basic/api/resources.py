@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
-from tastypie.cache import SimpleCache
-from tastypie import fields
-from tastypie.resources import ModelResource
-from tastypie.authentication import SessionAuthentication
-from tastypie.authorization import Authorization
+from tastefulpy.cache import SimpleCache
+from tastefulpy import fields
+from tastefulpy.resources import ModelResource
+from tastefulpy.authentication import SessionAuthentication
+from tastefulpy.authorization import Authorization
 from basic.models import Note, AnnotatedNote, SlugBasedNote
 
 

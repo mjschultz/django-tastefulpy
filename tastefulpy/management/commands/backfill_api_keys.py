@@ -1,8 +1,8 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 from django.core.management.base import NoArgsCommand
-from tastypie.compat import get_user_model
-from tastypie.models import ApiKey
+from tastefulpy.compat import get_user_model
+from tastefulpy.models import ApiKey
 
 
 class Command(NoArgsCommand):

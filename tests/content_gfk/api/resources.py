@@ -1,6 +1,6 @@
-from tastypie.authorization import Authorization
-from tastypie.contrib.contenttypes.fields import GenericForeignKeyField
-from tastypie.resources import ModelResource
+from tastefulpy.authorization import Authorization
+from tastefulpy.contrib.contenttypes.fields import GenericForeignKeyField
+from tastefulpy.resources import ModelResource
 from content_gfk.models import Note, Quote, Definition, Rating
 
 

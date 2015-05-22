@@ -4,7 +4,7 @@
 Tools
 =====
 
-Here are some tools that might help in interacting with the API that Tastypie
+Here are some tools that might help in interacting with the API that Tastefulpy
 provides:
 
 
@@ -30,12 +30,12 @@ A feature rich Chrome extension with JSON and XML support
 Extensions
 ==========
 
-Tastypie-msgpack
+Tastefulpy-msgpack
 ----------------
 
-https://github.com/stephenmcd/tastypie-msgpack
+https://github.com/stephenmcd/tastefulpy-msgpack
 
-Adds MsgPack_ support to Tastypie's serializer.
+Adds MsgPack_ support to Tastefulpy's serializer.
 
 .. _MsgPack: http://msgpack.org/
 
@@ -49,7 +49,7 @@ Slumber
 http://slumber.in/
 
 Slumber is a small Python library that makes it easy to access & work with
-APIs. It works for many others, but works especially well with Tastypie.
+APIs. It works for many others, but works especially well with Tastefulpy.
 
 Hammock
 -------
@@ -72,7 +72,7 @@ drest
 http://drest.rtfd.org/
 
 drest is another small Python library. It focuses on extensibility & can also
-work with many different API, with an emphasis on Tastypie.
+work with many different API, with an emphasis on Tastefulpy.
 
 httpie
 ------
@@ -120,7 +120,7 @@ django-permissionsx
 https://github.com/thinkingpotato/django-permissionsx
 
 This package allows using one set of rules both for Django class-based views]
-and Tastypie authorization. For example:
+and Tastefulpy authorization. For example:
 
 **articles/permissions.py**::
 
@@ -136,7 +136,7 @@ and Tastypie authorization. For example:
 
 **articles/api.py**::
 
-    class StaffOnlyAuthorization(TastypieAuthorization):
+    class StaffOnlyAuthorization(TastefulpyAuthorization):
         permissions_class = StaffPermissions
 
 
@@ -153,12 +153,12 @@ better transactional behavior.
 Javascript
 ==========
 
-backbone-tastypie
+backbone-tastefulpy
 -----------------
 
-https://github.com/PaulUithol/backbone-tastypie
+https://github.com/PaulUithol/backbone-tastefulpy
 
-A small layer that makes Backbone & Tastypie plan nicely together.
+A small layer that makes Backbone & Tastefulpy plan nicely together.
 
 
 backbone-relational
@@ -166,6 +166,6 @@ backbone-relational
 
 https://github.com/PaulUithol/Backbone-relational/
 
-Allows Backbone to work with relational data, like the kind of data Tastypie
+Allows Backbone to work with relational data, like the kind of data Tastefulpy
 provides.
 

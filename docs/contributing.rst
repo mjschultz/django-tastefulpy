@@ -2,20 +2,20 @@
 Contributing
 ============
 
-Tastypie is open-source and, as such, grows (or shrinks) & improves in part
+Tastefulpy is open-source and, as such, grows (or shrinks) & improves in part
 due to the community. Below are some guidelines on how to help with the project.
 
 
 Philosophy
 ==========
 
-* Tastypie is BSD-licensed. All contributed code must be either
+* Tastefulpy is BSD-licensed. All contributed code must be either
 
   * the original work of the author, contributed under the BSD, or...
   * work taken from another project released under a BSD-compatible license.
 
 * GPL'd (or similar) works are not eligible for inclusion.
-* Tastypie's git master branch should always be stable, production-ready &
+* Tastefulpy's git master branch should always be stable, production-ready &
   passing all tests.
 * Major releases (1.x.x) are commitments to backward-compatibility of the public APIs.
   Any documented API should ideally not change between major releases.
@@ -30,11 +30,11 @@ Guidelines For Reporting An Issue/Feature
 =========================================
 
 So you've found a bug or have a great idea for a feature. Here's the steps you
-should take to help get it added/fixed in Tastypie:
+should take to help get it added/fixed in Tastefulpy:
 
 * First, check to see if there's an existing issue/pull request for the
-  bug/feature. All issues are at https://github.com/toastdriven/django-tastypie/issues
-  and pull reqs are at https://github.com/toastdriven/django-tastypie/pulls.
+  bug/feature. All issues are at https://github.com/mjschultz/django-tastefulpy/issues
+  and pull reqs are at https://github.com/mjschultz/django-tastefulpy/pulls.
 * If there isn't one there, please file an issue. The ideal report includes:
 
   * A description of the problem/suggestion.
@@ -43,14 +43,14 @@ should take to help get it added/fixed in Tastypie:
 
     * Python interpreter
     * Django
-    * Tastypie
+    * Tastefulpy
     * Optionally of the other dependencies involved
 
   * Ideally, creating a pull request with a (failing) test case demonstrating
     what's wrong. This makes it easy for us to reproduce & fix the problem.
     Instructions for running the tests are at :doc:`index`
 
-You might also hop into the IRC channel (``#tastypie`` on ``irc.freenode.net``)
+You might also hop into the IRC channel (``#tastefulpy`` on ``irc.freenode.net``)
 & raise your question there, as there may be someone who can help you with a
 work-around.
 
@@ -62,7 +62,7 @@ If you're ready to take the plunge & contribute back some code/docs, the
 process should look like:
 
 * Fork the project on GitHub into your own account.
-* Clone your copy of Tastypie.
+* Clone your copy of Tastefulpy.
 * Make a new branch in git & commit your changes there.
 * Push your new branch up to GitHub.
 * Again, ensure there isn't already an issue or pull request out there on it.
@@ -72,7 +72,7 @@ process should look like:
   problem/feature is, versions of your software & referencing any related
   issues/pull requests.
 
-In order to be merged into Tastypie, contributions must have the following:
+In order to be merged into Tastefulpy, contributions must have the following:
 
 * A solid patch that:
 
@@ -89,7 +89,7 @@ In order to be merged into Tastypie, contributions must have the following:
 * Adds yourself to the AUTHORS file.
 
 If your contribution lacks any of these things, they will have to be added
-by a core contributor before being merged into Tastypie proper, which may take
+by a core contributor before being merged into Tastefulpy proper, which may take
 substantial time for the all-volunteer team to get to.
 
 
@@ -98,7 +98,7 @@ Guidelines For Core Contributors
 
 If you've been granted the commit bit, here's how to shepherd the changes in:
 
-* Any time you go to work on Tastypie, please use ``git pull --rebase`` to fetch
+* Any time you go to work on Tastefulpy, please use ``git pull --rebase`` to fetch
   the latest changes.
 * Any new features/bug fixes must meet the above guidelines for contributing
   code (solid patch/tests passing/docs included).

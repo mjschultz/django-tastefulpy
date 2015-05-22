@@ -1,31 +1,31 @@
 .. _ref-tutorial:
 
 =============================
-Getting Started with Tastypie
+Getting Started with Tastefulpy
 =============================
 
-Tastypie is a reusable app (that is, it relies only on its own code and
+Tastefulpy is a reusable app (that is, it relies only on its own code and
 focuses on providing just a REST-style API) and is suitable for providing an
 API to any application without having to modify the sources of that app.
 
-Not everyone's needs are the same, so Tastypie goes out of its way to provide
+Not everyone's needs are the same, so Tastefulpy goes out of its way to provide
 plenty of hooks for overriding or extending how it works.
 
 .. note::
 
     If you hit a stumbling block, you can join
-    `#tastypie on irc.freenode.net`_ to get help.
+    `#tastefulpy on irc.freenode.net`_ to get help.
 
-.. _#tastypie on irc.freenode.net: irc://irc.freenode.net/tastypie
+.. _#tastefulpy on irc.freenode.net: irc://irc.freenode.net/tastefulpy
 
 This tutorial assumes that you have a basic understanding of Django as well as
 how proper REST-style APIs ought to work. We will only explain the portions
-of the code that are Tastypie-specific in any kind of depth.
+of the code that are Tastefulpy-specific in any kind of depth.
 
 For example purposes, we'll be adding an API to a simple blog application.
 Here is ``myapp/models.py``::
 
-    from tastypie.utils.timezone import now
+    from tastefulpy.utils.timezone import now
     from django.contrib.auth.models import User
     from django.db import models
     from django.utils.text import slugify
@@ -48,13 +48,13 @@ Here is ``myapp/models.py``::
 
             return super(Entry, self).save(*args, **kwargs)
 
-With that, we'll move on to installing and configuring Tastypie.
+With that, we'll move on to installing and configuring Tastefulpy.
 
 
 Installation
 ============
 
-Installing Tastypie is as simple as checking out the source and adding it to
+Installing Tastefulpy is as simple as checking out the source and adding it to
 your project or ``PYTHONPATH``.
 
   1. Download the dependencies:
@@ -66,21 +66,21 @@ your project or ``PYTHONPATH``.
     * **OPTIONAL** - ``lxml`` (http://lxml.de/) and ``defusedxml``  (https://pypi.python.org/pypi/defusedxml) if using the XML serializer
     * **OPTIONAL** - ``pyyaml`` (http://pyyaml.org/) if using the YAML serializer
 
-  2. Either check out tastypie from GitHub_ or to pull a release off PyPI_.
-     Doing ``sudo pip install django-tastypie`` or
-     ``sudo easy_install django-tastypie`` is all that should be required.
-  3. Either symlink the ``tastypie`` directory into your project or copy the
+  2. Either check out tastefulpy from GitHub_ or to pull a release off PyPI_.
+     Doing ``sudo pip install django-tastefulpy`` or
+     ``sudo easy_install django-tastefulpy`` is all that should be required.
+  3. Either symlink the ``tastefulpy`` directory into your project or copy the
      directory in. What ever works best for you.
 
-.. _GitHub: http://github.com/toastdriven/django-tastypie
-.. _PyPI: http://pypi.python.org/pypi/django-tastypie
+.. _GitHub: http://github.com/mjschultz/django-tastefulpy
+.. _PyPI: http://pypi.python.org/pypi/django-tastefulpy
 
 
 Configuration
 =============
 
-The only mandatory configuration is adding ``'tastypie'`` to your
-``INSTALLED_APPS``. This isn't strictly necessary, as Tastypie has only two
+The only mandatory configuration is adding ``'tastefulpy'`` to your
+``INSTALLED_APPS``. This isn't strictly necessary, as Tastefulpy has only two
 non-required models, but may ease usage.
 
 You have the option to set up a number of settings (see :doc:`settings`) but
@@ -92,12 +92,12 @@ Creating Resources
 ==================
 
 REST-style architecture talks about resources, so unsurprisingly integrating
-with Tastypie involves creating :class:`~tastypie.resources.Resource` classes.
+with Tastefulpy involves creating :class:`~tastefulpy.resources.Resource` classes.
 For our simple application, we'll create a file for these in ``myapp/api.py``,
 though they can live anywhere in your application::
 
     # myapp/api.py
-    from tastypie.resources import ModelResource
+    from tastefulpy.resources import ModelResource
     from myapp.models import Entry
 
 
@@ -106,16 +106,16 @@ though they can live anywhere in your application::
             queryset = Entry.objects.all()
             resource_name = 'entry'
 
-This class, by virtue of being a :class:`~tastypie.resources.ModelResource`
+This class, by virtue of being a :class:`~tastefulpy.resources.ModelResource`
 subclass, will introspect all non-relational fields on the ``Entry`` model and
-create its own :mod:`ApiFields <tastypie.fields>` that map to those fields,
+create its own :mod:`ApiFields <tastefulpy.fields>` that map to those fields,
 much like the way Django's ``ModelForm`` class introspects.
 
 .. note::
 
     The ``resource_name`` within the ``Meta`` class is optional. If not
     provided, it is automatically generated off the classname, removing any
-    instances of :class:`~tastypie.resources.Resource` and lowercasing the
+    instances of :class:`~tastefulpy.resources.Resource` and lowercasing the
     string. So ``EntryResource`` would become just ``entry``.
 
     We've included the ``resource_name`` attribute in this example for clarity,
@@ -149,13 +149,13 @@ list of ``Entry``-like objects.
 .. note::
 
     The ``?format=json`` is an override required to make things look decent
-    in the browser (accept headers vary between browsers). Tastypie properly
+    in the browser (accept headers vary between browsers). Tastefulpy properly
     handles the ``Accept`` header. So the following will work properly::
 
         curl -H "Accept: application/json" http://127.0.0.1:8000/api/entry/
 
     But if you're sure you want something else (or want to test in a browser),
-    Tastypie lets you specify ``?format=...`` when you really want to force
+    Tastefulpy lets you specify ``?format=...`` when you really want to force
     a certain type.
 
 At this point, a bunch of other URLs are also available. Try out any/all of
@@ -167,14 +167,14 @@ the following (assuming you have at least three records in the database):
   * http://127.0.0.1:8000/api/entry/set/1;3/?format=json
 
 However, if you try sending a POST/PUT/DELETE to the resource, you find yourself
-getting "401 Unauthorized" errors. For safety, Tastypie ships with the
+getting "401 Unauthorized" errors. For safety, Tastefulpy ships with the
 ``authorization`` class ("what are you allowed to do") set to
 ``ReadOnlyAuthorization``. This makes it safe to expose on the web, but prevents
 us from doing POST/PUT/DELETE. Let's enable those::
 
     # myapp/api.py
-    from tastypie.authorization import Authorization
-    from tastypie.resources import ModelResource
+    from tastefulpy.authorization import Authorization
+    from tastefulpy.resources import ModelResource
     from myapp.models import Entry
 
 
@@ -189,7 +189,7 @@ us from doing POST/PUT/DELETE. Let's enable those::
   This is now great for testing in development but **VERY INSECURE**. You
   should never put a ``Resource`` like this out on the internet. Please spend
   some time looking at the authentication/authorization classes available in
-  Tastypie.
+  Tastefulpy.
 
 With just nine lines of code, we have a full working REST interface to our
 ``Entry`` model. In addition, full GET/POST/PUT/DELETE support is already
@@ -197,7 +197,7 @@ there, so it's possible to really work with all of the data. Well, *almost*.
 
 You see, you'll note that not quite all of our data is there. Markedly absent
 is the ``user`` field, which is a ``ForeignKey`` to Django's ``User`` model.
-Tastypie does **NOT** introspect related data because it has no way to know
+Tastefulpy does **NOT** introspect related data because it has no way to know
 how you want to represent that data.
 
 And since that relation isn't there, any attempt to POST/PUT new data will
@@ -215,8 +215,8 @@ In order to handle our ``user`` relation, we'll need to create a
 
     # myapp/api.py
     from django.contrib.auth.models import User
-    from tastypie import fields
-    from tastypie.resources import ModelResource
+    from tastefulpy import fields
+    from tastefulpy.resources import ModelResource
     from myapp.models import Entry
 
 
@@ -233,7 +233,7 @@ In order to handle our ``user`` relation, we'll need to create a
             queryset = Entry.objects.all()
             resource_name = 'entry'
 
-We simply created a new :class:`~tastypie.resources.ModelResource` subclass
+We simply created a new :class:`~tastefulpy.resources.ModelResource` subclass
 called ``UserResource``.  Then we added a field to ``EntryResource`` that
 specified that the ``user`` field points to a ``UserResource`` for that data.
 
@@ -245,8 +245,8 @@ to our API as well. And there's a better way to do it.
 Adding To The Api
 =================
 
-Tastypie ships with an :class:`~tastypie.api.Api` class, which lets you bind
-multiple :class:`Resources <tastypie.resources.Resource>` together to form a
+Tastefulpy ships with an :class:`~tastefulpy.api.Api` class, which lets you bind
+multiple :class:`Resources <tastefulpy.resources.Resource>` together to form a
 coherent API. Adding it to the mix is simple.
 
 We'll go back to our URLconf (``urls.py``) and change it to match the
@@ -254,7 +254,7 @@ following::
 
     # urls.py
     from django.conf.urls.defaults import *
-    from tastypie.api import Api
+    from tastefulpy.api import Api
     from myapp.api import EntryResource, UserResource
 
     v1_api = Api(api_name='v1')
@@ -267,7 +267,7 @@ following::
         (r'^api/', include(v1_api.urls)),
     )
 
-Note that we're now creating an :class:`~tastypie.api.Api` instance,
+Note that we're now creating an :class:`~tastefulpy.api.Api` instance,
 registering our ``EntryResource`` and ``UserResource`` instances with it and
 that we've modified the urls to now point to ``v1_api.urls``.
 
@@ -334,7 +334,7 @@ you require more granular control, both ``list_allowed_methods`` and
 Beyond The Basics
 =================
 
-We now have a full working API for our application. But Tastypie supports many
+We now have a full working API for our application. But Tastefulpy supports many
 more features, like:
 
   * :doc:`authentication`
@@ -344,5 +344,5 @@ more features, like:
   * :doc:`resources` (filtering & sorting)
   * :doc:`serialization`
 
-Tastypie is also very easy to override and extend. For some common patterns and
+Tastefulpy is also very easy to override and extend. For some common patterns and
 approaches, you should refer to the :doc:`cookbook` documentation.

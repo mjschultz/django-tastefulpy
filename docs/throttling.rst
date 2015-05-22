@@ -8,7 +8,7 @@ Sometimes, the client on the other end may request data too frequently or
 you have a business use case that dictates that the client should be limited
 to a certain number of requests per hour.
 
-For this, Tastypie includes throttling as a way to limit the number of requests
+For this, Tastefulpy includes throttling as a way to limit the number of requests
 in a timeframe.
 
 Usage
@@ -18,8 +18,8 @@ To specify a throttle, add the ``Throttle`` class to the ``Meta`` class on the
 ``Resource``::
 
     from django.contrib.auth.models import User
-    from tastypie.resources import ModelResource
-    from tastypie.throttle import BaseThrottle
+    from tastefulpy.resources import ModelResource
+    from tastefulpy.throttle import BaseThrottle
     
     
     class UserResource(ModelResource):
@@ -45,7 +45,7 @@ arguments:
 * ``expiration`` - the length of time to retain the times the user
   has accessed the api in the cache. Default is 604800 (1 week).
 
-Tastypie ships with the following ``Throttle`` classes:
+Tastefulpy ships with the following ``Throttle`` classes:
 
 ``BaseThrottle``
 ~~~~~~~~~~~~~~~~
@@ -79,7 +79,7 @@ API.
 An example of a subclass might be::
 
     import random
-    from tastypie.throttle import BaseThrottle
+    from tastefulpy.throttle import BaseThrottle
     
     
     class RandomThrottle(BaseThrottle):
@@ -105,7 +105,7 @@ and ``log_throttled_access`` explicitly.
 
 An example of this might be::
 
-    from tastypie.throttle import CacheThrottle
+    from tastefulpy.throttle import CacheThrottle
     
       
     class NoteResource(Resource):

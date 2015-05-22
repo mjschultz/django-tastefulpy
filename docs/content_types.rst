@@ -10,7 +10,7 @@ one end is not defined by the model's schema.
 .. _Content Types: https://docs.djangoproject.com/en/dev/ref/contrib/contenttypes/
 
 If you're using GenericForeignKeys in django, you can use a
-GenericForeignKeyField in Tastypie.
+GenericForeignKeyField in Tastefulpy.
 
 Usage
 =====
@@ -32,8 +32,8 @@ Here's an example model with a GenericForeignKey taken from the Django docs::
 
 A simple ModelResource for this model might look like this::
 
-    from tastypie.contrib.contenttypes.fields import GenericForeignKeyField
-    from tastypie.resources import ModelResource
+    from tastefulpy.contrib.contenttypes.fields import GenericForeignKeyField
+    from tastefulpy.resources import ModelResource
 
     from .models import Note, Quote, TaggedItem
 

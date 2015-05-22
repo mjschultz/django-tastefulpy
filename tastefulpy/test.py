@@ -6,7 +6,7 @@ from django.test import TestCase
 from django.test.client import FakePayload, Client
 from django.utils.encoding import force_text
 
-from tastypie.serializers import Serializer
+from tastefulpy.serializers import Serializer
 
 try:
     from urllib.parse import urlparse
@@ -43,7 +43,7 @@ class TestApiClient(object):
         send along ``GET`` parameters. This is useful when testing filtering or other
         things that read off the ``GET`` params. Example::
 
-            from tastypie.test import TestApiClient
+            from tastefulpy.test import TestApiClient
             client = TestApiClient()
 
             response = client.get('/api/v1/entry/1/', data={'format': 'json', 'title__startswith': 'a', 'limit': 20, 'offset': 60})
@@ -75,7 +75,7 @@ class TestApiClient(object):
         ``data`` gets serialized & sent as the body instead of becoming part of the URI.
         Example::
 
-            from tastypie.test import TestApiClient
+            from tastefulpy.test import TestApiClient
             client = TestApiClient()
 
             response = client.post('/api/v1/entry/', data={
@@ -111,7 +111,7 @@ class TestApiClient(object):
         ``data`` gets serialized & sent as the body instead of becoming part of the URI.
         Example::
 
-            from tastypie.test import TestApiClient
+            from tastefulpy.test import TestApiClient
             client = TestApiClient()
 
             response = client.put('/api/v1/entry/1/', data={
@@ -147,7 +147,7 @@ class TestApiClient(object):
         ``data`` gets serialized & sent as the body instead of becoming part of the URI.
         Example::
 
-            from tastypie.test import TestApiClient
+            from tastefulpy.test import TestApiClient
             client = TestApiClient()
 
             response = client.patch('/api/v1/entry/1/', data={
@@ -194,7 +194,7 @@ class TestApiClient(object):
         send along ``DELETE`` parameters. This is useful when testing filtering or other
         things that read off the ``DELETE`` params. Example::
 
-            from tastypie.test import TestApiClient
+            from tastefulpy.test import TestApiClient
             client = TestApiClient()
 
             response = client.delete('/api/v1/entry/1/', data={'format': 'json'})
@@ -221,7 +221,7 @@ class TestApiClient(object):
 
 class ResourceTestCase(TestCase):
     """
-    A useful base class for the start of testing Tastypie APIs.
+    A useful base class for the start of testing Tastefulpy APIs.
     """
     def setUp(self):
         super(ResourceTestCase, self).setUp()
@@ -266,7 +266,7 @@ class ResourceTestCase(TestCase):
         Creates & returns the HTTP ``Authorization`` header for use with Digest
         Auth.
         """
-        from tastypie.authentication import hmac, sha1, uuid, python_digest
+        from tastefulpy.authentication import hmac, sha1, uuid, python_digest
 
         new_uuid = uuid.uuid4()
         opaque = hmac.new(str(new_uuid).encode('utf-8'), digestmod=sha1).hexdigest().decode('utf-8')
@@ -275,7 +275,7 @@ class ResourceTestCase(TestCase):
             method.upper(),
             uri,
             1, # nonce_count
-            digest_challenge=python_digest.build_digest_challenge(time.time(), getattr(settings, 'SECRET_KEY', ''), 'django-tastypie', opaque, False),
+            digest_challenge=python_digest.build_digest_challenge(time.time(), getattr(settings, 'SECRET_KEY', ''), 'django-tastefulpy', opaque, False),
             password=api_key
         )
 

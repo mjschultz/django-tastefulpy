@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 
-from tastypie import fields
-from tastypie.resources import ModelResource
-from tastypie.authorization import Authorization
+from tastefulpy import fields
+from tastefulpy.resources import ModelResource
+from tastefulpy.authorization import Authorization
 
 from core.models import Note, MediaBit
 

@@ -120,7 +120,7 @@ class CacheDBThrottle(CacheThrottle):
         """
         # Do the import here, instead of top-level, so that the model is
         # only required when using this throttling mechanism.
-        from tastypie.models import ApiAccess
+        from tastefulpy.models import ApiAccess
         super(CacheDBThrottle, self).accessed(identifier, **kwargs)
         # Write out the access to the DB for logging purposes.
         ApiAccess.objects.create(

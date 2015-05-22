@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 import mimeparse
 
-from tastypie.exceptions import BadRequest
+from tastefulpy.exceptions import BadRequest
 
 
 def determine_format(request, serializer, default_format='application/json'):

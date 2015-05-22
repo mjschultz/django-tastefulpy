@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.test import TestCase
-from tastypie.exceptions import BadRequest
-from tastypie.paginator import Paginator
+from tastefulpy.exceptions import BadRequest
+from tastefulpy.paginator import Paginator
 from core.models import Note
 from core.tests.resources import NoteResource
 from django.db import reset_queries

@@ -4,10 +4,10 @@
 Python 3 Support
 ================
 
-As of Tastypie v0.10.0, it has been ported to support both Python 2 & Python 3
+As of Tastefulpy v0.10.0, it has been ported to support both Python 2 & Python 3
 within the same codebase. This builds on top of what `six`_ & `Django`_ provide.
 
-No changes are required for anyone running an existing Tastypie
+No changes are required for anyone running an existing Tastefulpy
 installation. The API is completely backward-compatible, so you should be able
 to run your existing software without modification.
 
@@ -23,7 +23,7 @@ Incompatibilities
 Oauth Is Unsupported
 --------------------
 
-Tastypie was depending on several Oauth libraries for that authentication
+Tastefulpy was depending on several Oauth libraries for that authentication
 mechanism. Unfortunately, none of them have been ported to Python 3. They're
 still usable from Python 2, but that will be blocked until the underlying
 libraries port (or an alternative can be found).
@@ -58,7 +58,7 @@ response, under Python 3.3.2+,
 `hash randomization`_ is in effect, which means that the ordering of
 dictionaries is no longer consistent, even on the same platform.
 
-To mitigate this, Tastypie now tries to ensure that serialized data is sorted
+To mitigate this, Tastefulpy now tries to ensure that serialized data is sorted
 alphabetically. So if you were making string assertions, you'll need to update
 them for the new payloads.
 

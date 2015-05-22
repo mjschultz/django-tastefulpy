@@ -10,8 +10,8 @@ from django.core.exceptions import ImproperlyConfigured
 from django.middleware.csrf import _sanitize_token, constant_time_compare
 from django.utils.http import same_origin
 from django.utils.translation import ugettext as _
-from tastypie.http import HttpUnauthorized
-from tastypie.compat import get_user_model, get_username_field
+from tastefulpy.http import HttpUnauthorized
+from tastefulpy.compat import get_user_model, get_username_field
 
 try:
     from hashlib import sha1
@@ -88,9 +88,9 @@ class BasicAuthentication(Authentication):
         setting.
     ``realm``
         The realm to use in the ``HttpUnauthorized`` response.  Default:
-        ``django-tastypie``.
+        ``django-tastefulpy``.
     """
-    def __init__(self, backend=None, realm='django-tastypie', **kwargs):
+    def __init__(self, backend=None, realm='django-tastefulpy', **kwargs):
         super(BasicAuthentication, self).__init__(**kwargs)
         self.backend = backend
         self.realm = realm
@@ -152,7 +152,7 @@ class ApiKeyAuthentication(Authentication):
     """
     Handles API key auth, in which a user provides a username & API key.
 
-    Uses the ``ApiKey`` model that ships with tastypie. If you wish to use
+    Uses the ``ApiKey`` model that ships with tastefulpy. If you wish to use
     a different model, override the ``get_key`` method to perform the key check
     as suits your needs.
     """
@@ -209,7 +209,7 @@ class ApiKeyAuthentication(Authentication):
         Attempts to find the API key for the user. Uses ``ApiKey`` by default
         but can be overridden.
         """
-        from tastypie.models import ApiKey
+        from tastefulpy.models import ApiKey
 
         try:
             ApiKey.objects.get(user=user, key=api_key)
@@ -298,9 +298,9 @@ class DigestAuthentication(Authentication):
         setting.
     ``realm``
         The realm to use in the ``HttpUnauthorized`` response.  Default:
-        ``django-tastypie``.
+        ``django-tastefulpy``.
     """
-    def __init__(self, backend=None, realm='django-tastypie', **kwargs):
+    def __init__(self, backend=None, realm='django-tastefulpy', **kwargs):
         super(DigestAuthentication, self).__init__(**kwargs)
         self.backend = backend
         self.realm = realm
@@ -385,7 +385,7 @@ class DigestAuthentication(Authentication):
         Note that this behaves differently than the ``ApiKeyAuthentication``
         method of the same name.
         """
-        from tastypie.models import ApiKey
+        from tastefulpy.models import ApiKey
 
         try:
             key = ApiKey.objects.get(user=user)

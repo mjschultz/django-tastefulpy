@@ -8,12 +8,12 @@ Bundles
 What Are Bundles?
 =================
 
-Bundles are a small abstraction that allow Tastypie to pass data between
+Bundles are a small abstraction that allow Tastefulpy to pass data between
 resources. This allows us not to depend on passing ``request`` to every single
 method (especially in places where this would be overkill). It also allows
 resources to work with data coming into the application paired together with
 an unsaved instance of the object in question. Finally, it aids in keeping
-Tastypie more thread-safe.
+Tastefulpy more thread-safe.
 
 Think of it as package of user data & an object instance (either of which are
 optionally present).

@@ -7,8 +7,8 @@ from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
 from django.test.testcases import TestCase
 
-from tastypie import fields
-from tastypie.exceptions import NotFound
+from tastefulpy import fields
+from tastefulpy.exceptions import NotFound
 
 from core.models import Note, MediaBit
 from core.tests.mocks import MockRequest

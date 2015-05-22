@@ -8,7 +8,7 @@ Having integrated unit tests that cover your API's behavior is important, as
 it helps provide verification that your API code is still valid & working
 correctly with the rest of your application.
 
-Tastypie provides some basic facilities that build on top of `Django's testing`_
+Tastefulpy provides some basic facilities that build on top of `Django's testing`_
 support, in the form of a specialized ``TestApiClient`` & ``ResourceTestCase``.
 
 .. _`Django's testing`: https://docs.djangoproject.com/en/dev/topics/testing/
@@ -30,8 +30,8 @@ The typical use case will primarily consist of subclassing the
 API is behaving correctly. For the purposes of this example, we'll assume the
 resource in question looks like::
 
-    from tastypie.authentication import BasicAuthentication
-    from tastypie.resources import ModelResource
+    from tastefulpy.authentication import BasicAuthentication
+    from tastefulpy.resources import ModelResource
     from entries.models import Entry
 
 
@@ -45,7 +45,7 @@ An example usage might look like::
 
     import datetime
     from django.contrib.auth.models import User
-    from tastypie.test import ResourceTestCase
+    from tastefulpy.test import ResourceTestCase
     from entries.models import Entry
 
 
@@ -474,7 +474,7 @@ Optionally accepts a ``data`` kwarg, which in the case of ``GET``, lets you
 send along ``GET`` parameters. This is useful when testing filtering or other
 things that read off the ``GET`` params. Example::
 
-    from tastypie.test import TestApiClient
+    from tastefulpy.test import TestApiClient
     client = TestApiClient()
 
     response = client.get('/api/v1/entry/1/', data={'format': 'json', 'title__startswith': 'a', 'limit': 20, 'offset': 60})
@@ -497,7 +497,7 @@ Optionally accepts a ``data`` kwarg. **Unlike** ``GET``, in ``POST`` the
 ``data`` gets serialized & sent as the body instead of becoming part of the URI.
 Example::
 
-    from tastypie.test import TestApiClient
+    from tastefulpy.test import TestApiClient
     client = TestApiClient()
 
     response = client.post('/api/v1/entry/', data={
@@ -525,7 +525,7 @@ Optionally accepts a ``data`` kwarg. **Unlike** ``GET``, in ``PUT`` the
 ``data`` gets serialized & sent as the body instead of becoming part of the URI.
 Example::
 
-    from tastypie.test import TestApiClient
+    from tastefulpy.test import TestApiClient
     client = TestApiClient()
 
     response = client.put('/api/v1/entry/1/', data={
@@ -553,7 +553,7 @@ Optionally accepts a ``data`` kwarg. **Unlike** ``GET``, in ``PATCH`` the
 ``data`` gets serialized & sent as the body instead of becoming part of the URI.
 Example::
 
-    from tastypie.test import TestApiClient
+    from tastefulpy.test import TestApiClient
     client = TestApiClient()
 
     response = client.patch('/api/v1/entry/1/', data={
@@ -581,7 +581,7 @@ Optionally accepts a ``data`` kwarg, which in the case of ``DELETE``, lets you
 send along ``DELETE`` parameters. This is useful when testing filtering or other
 things that read off the ``DELETE`` params. Example::
 
-    from tastypie.test import TestApiClient
+    from tastefulpy.test import TestApiClient
     client = TestApiClient()
 
     response = client.delete('/api/v1/entry/1/', data={'format': 'json'})

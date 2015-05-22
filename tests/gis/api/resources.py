@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
-from tastypie import fields
-from tastypie.resources import ALL
-from tastypie.contrib.gis.resources import ModelResource
-from tastypie.authorization import Authorization
+from tastefulpy import fields
+from tastefulpy.resources import ALL
+from tastefulpy.contrib.gis.resources import ModelResource
+from tastefulpy.authorization import Authorization
 from gis.models import GeoNote
 
 

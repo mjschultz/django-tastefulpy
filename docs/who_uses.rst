@@ -1,9 +1,9 @@
 .. _ref-who-uses:
 
-Sites Using Tastypie
+Sites Using Tastefulpy
 ====================
 
-The following sites are a partial list of people using Tastypie. I'm always
+The following sites are a partial list of people using Tastefulpy. I'm always
 interested in adding more sites, so please find me (``daniellindsley``) via
 IRC or start a mailing list thread.
 
@@ -54,7 +54,7 @@ LocalWiki
 ---------
 
 `LocalWiki <http://localwiki.org>`_ is a tool for collaborating in local,
-geographic communities. It's using Tastypie to provide an geospatially-aware
+geographic communities. It's using Tastefulpy to provide an geospatially-aware
 REST API.
 
 * http://localwiki.readthedocs.org/en/latest/api.html

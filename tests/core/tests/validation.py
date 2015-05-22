@@ -1,8 +1,8 @@
 from django.core.exceptions import ImproperlyConfigured
 from django import forms
 from django.test import TestCase
-from tastypie.bundle import Bundle
-from tastypie.validation import Validation, FormValidation, CleanedDataFormValidation
+from tastefulpy.bundle import Bundle
+from tastefulpy.validation import Validation, FormValidation, CleanedDataFormValidation
 
 
 class NoteForm(forms.Form):

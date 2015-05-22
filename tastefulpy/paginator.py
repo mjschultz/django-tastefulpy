@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.utils import six
 
-from tastypie.exceptions import BadRequest
+from tastefulpy.exceptions import BadRequest
 
 try:
     from urllib.parse import urlencode
@@ -16,7 +16,7 @@ class Paginator(object):
     Limits result sets down to sane amounts for passing to the client.
 
     This is used in place of Django's ``Paginator`` due to the way pagination
-    works. ``limit`` & ``offset`` (tastypie) are used in place of ``page``
+    works. ``limit`` & ``offset`` (tastefulpy) are used in place of ``page``
     (Django) so none of the page-related calculations are necessary.
 
     This implementation also provides additional details like the

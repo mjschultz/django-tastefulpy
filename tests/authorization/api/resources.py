@@ -1,11 +1,11 @@
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
-from tastypie.authentication import BasicAuthentication
-from tastypie.authorization import Authorization
-from tastypie.exceptions import Unauthorized
-from tastypie import fields
-from tastypie.resources import ModelResource
+from tastefulpy.authentication import BasicAuthentication
+from tastefulpy.authorization import Authorization
+from tastefulpy.exceptions import Unauthorized
+from tastefulpy import fields
+from tastefulpy.resources import ModelResource
 from ..models import AuthorProfile, Article
 
 

@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.test import TestCase
-from tastypie.api import Api
-from tastypie.exceptions import NotRegistered, BadRequest
-from tastypie.resources import Resource, ModelResource
-from tastypie.serializers import Serializer
+from tastefulpy.api import Api
+from tastefulpy.exceptions import NotRegistered, BadRequest
+from tastefulpy.resources import Resource, ModelResource
+from tastefulpy.serializers import Serializer
 from core.models import Note
 
 
@@ -159,7 +159,7 @@ class ApiTestCase(TestCase):
     def test_custom_api_serializer(self):
         """Confirm that an Api can use a custom serializer"""
 
-        # Origin: https://github.com/toastdriven/django-tastypie/pull/817
+        # Origin: https://github.com/toastdriven/django-tastefulpy/pull/817
 
         class JSONSerializer(Serializer):
             formats = ('json', )

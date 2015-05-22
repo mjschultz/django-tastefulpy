@@ -1,21 +1,21 @@
 .. _ref-cookbook:
 
 =================
-Tastypie Cookbook
+Tastefulpy Cookbook
 =================
 
 Creating a Full OAuth 2.0 API
 -----------------------------
 
 It is common to use django to provision OAuth 2.0 tokens for users and then
-have Tasty Pie use these tokens to authenticate users to the API. `Follow this tutorial <http://ianalexandr.com/blog/building-a-true-oauth-20-api-with-django-and-tasty-pie.html>`_ and `use this custom authentication class <https://github.com/ianalexander/django-oauth2-tastypie>`_ to enable
+have Tasty Pie use these tokens to authenticate users to the API. `Follow this tutorial <http://ianalexandr.com/blog/building-a-true-oauth-20-api-with-django-and-tasty-pie.html>`_ and `use this custom authentication class <https://github.com/ianalexander/django-oauth2-tastefulpy>`_ to enable
 OAuth 2.0 authentication with Tasty Pie.::
 
     # api.py
-    from tastypie.resources import ModelResource
-    from tastypie.authorization import DjangoAuthorization
+    from tastefulpy.resources import ModelResource
+    from tastefulpy.authorization import DjangoAuthorization
     from polls.models import Poll, Choice
-    from tastypie import fields
+    from tastefulpy import fields
     from authentication import OAuth20Authentication
 
     class ChoiceResource(ModelResource):
@@ -39,7 +39,7 @@ Adding Custom Values
 
 You might encounter cases where you wish to include additional data in a
 response which is not obtained from a field or method on your model. You can
-easily extend the :meth:`~tastypie.resources.Resource.dehydrate` method to
+easily extend the :meth:`~tastefulpy.resources.Resource.dehydrate` method to
 provide additional values::
 
     class MyModelResource(Resource):
@@ -58,7 +58,7 @@ A common pattern is needing to limit a queryset by something that changes
 per-request, for instance the date/time. You can accomplish this by lightly
 modifying ``get_object_list``::
 
-    from tastypie.utils import now
+    from tastefulpy.utils import now
 
     class MyResource(ModelResource):
         class Meta:
@@ -212,8 +212,8 @@ at ``/api/v1/notes/search/``::
     from django.core.paginator import Paginator, InvalidPage
     from django.http import Http404
     from haystack.query import SearchQuerySet
-    from tastypie.resources import ModelResource
-    from tastypie.utils import trailing_slash
+    from tastefulpy.resources import ModelResource
+    from tastefulpy.utils import trailing_slash
     from notes.models import Note
 
 
@@ -291,11 +291,11 @@ camelCase JSON Serialization
 ----------------------------
 
 The convention in the world of Javascript has standardized on camelCase,
-where Tastypie uses underscore syntax, which can lead to "ugly" looking
+where Tastefulpy uses underscore syntax, which can lead to "ugly" looking
 code in Javascript. You can create a custom serializer that emits
 values in camelCase instead::
 
-    from tastypie.serializers import Serializer
+    from tastefulpy.serializers import Serializer
 
     import re
     import json
@@ -357,13 +357,13 @@ values in camelCase instead::
 Pretty-printed JSON Serialization
 ---------------------------------
 
-By default, Tastypie outputs JSON with no indentation or newlines (equivalent to calling
+By default, Tastefulpy outputs JSON with no indentation or newlines (equivalent to calling
 :py:func:`json.dumps` with *indent* set to ``None``). You can override this
 behavior in a custom serializer::
 
     import json
     from django.core.serializers.json import DjangoJSONEncoder
-    from tastypie.serializers import Serializer
+    from tastefulpy.serializers import Serializer
 
     class PrettyJSONSerializer(Serializer):
         json_indent = 2
@@ -385,7 +385,7 @@ of syntax additional to the default URL scheme::
     # myapp/api/resources.py
 
     # Piggy-back on internal csrf_exempt existence handling
-    from tastypie.resources import csrf_exempt
+    from tastefulpy.resources import csrf_exempt
 
     class UserResource(ModelResource):
         class Meta:
@@ -430,8 +430,8 @@ UserAdmin, alter the inlines, and re-register it. This could go in any of your
 admin.py files. You may also want to register ApiAccess and ApiKey models on
 their own.::
 
-    from tastypie.admin import ApiKeyInline
-    from tastypie.models import ApiAccess, ApiKey
+    from tastefulpy.admin import ApiKeyInline
+    from tastefulpy.models import ApiAccess, ApiKey
     from django.contrib.auth.admin import UserAdmin
     from django.contrib.auth.models import User
 
@@ -453,8 +453,8 @@ access the API (assuming jQuery), the first thing to do is setup
 ``SessionAuthentication``::
 
     from django.contrib.auth.models import User
-    from tastypie.authentication import SessionAuthentication
-    from tastypie.resources import ModelResource
+    from tastefulpy.authentication import SessionAuthentication
+    from tastefulpy.resources import ModelResource
 
 
     class UserResource(ModelResource):

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 
-from tastypie.utils import now
+from tastefulpy.utils import now
 
 
 class GeoNote(models.Model):

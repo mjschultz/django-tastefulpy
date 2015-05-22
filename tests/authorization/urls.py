@@ -3,7 +3,7 @@ try:
 except ImportError: # Django < 1.4
     from django.conf.urls.defaults import patterns, url, include
 
-from tastypie.api import Api
+from tastefulpy.api import Api
 from .api.resources import ArticleResource, AuthorProfileResource, SiteResource, UserResource
 v1_api = Api()
 v1_api.register(ArticleResource())

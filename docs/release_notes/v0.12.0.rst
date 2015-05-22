@@ -9,19 +9,19 @@ several bugfixes.
 .. warning::
 
   If you were previously relying on importing the ``User`` model from
-  ``tastypie.compat``, this import will no longer work correctly. This was
+  ``tastefulpy.compat``, this import will no longer work correctly. This was
   removed due to the way app-loading works in Django 1.7 & no great solution
   for dodging this issue exists.
 
   If you were using either of::
 
-    from tastypie.compat import User
-    from tastypie.compat import username_field
+    from tastefulpy.compat import User
+    from tastefulpy.compat import username_field
 
   Please update your code as follows::
 
-    from tastypie.compat import get_user_model
-    from tastypie.compat import get_username_field
+    from tastefulpy.compat import get_user_model
+    from tastefulpy.compat import get_username_field
 
 
 Bugfixes

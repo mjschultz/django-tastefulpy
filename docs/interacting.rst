@@ -11,13 +11,13 @@ allows you to control headers & bodies on requests will do.
 
 .. _cURL: http://curl.haxx.se/
 
-We'll assume that we're interacting with the following Tastypie code::
+We'll assume that we're interacting with the following Tastefulpy code::
 
     # myapp/api/resources.py
     from django.contrib.auth.models import User
-    from tastypie.authorization import Authorization
-    from tastypie import fields
-    from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
+    from tastefulpy.authorization import Authorization
+    from tastefulpy import fields
+    from tastefulpy.resources import ModelResource, ALL, ALL_WITH_RELATIONS
     from myapp.models import Entry
 
 
@@ -46,7 +46,7 @@ We'll assume that we're interacting with the following Tastypie code::
 
     # urls.py
     from django.conf.urls.defaults import *
-    from tastypie.api import Api
+    from tastefulpy.api import Api
     from myapp.api.resources import EntryResource, UserResource
 
     v1_api = Api(api_name='v1')
@@ -65,10 +65,10 @@ Let's fire up a shell & start exploring the API!
 Front Matter
 ============
 
-Tastypie tries to treat all clients & all serialization types as equally as
+Tastefulpy tries to treat all clients & all serialization types as equally as
 possible. It also tries to be a good 'Net citizen & respects the HTTP method
 used as well as the ``Accepts`` headers sent. Between these two, you control
-all interactions with Tastypie through relatively few endpoints.
+all interactions with Tastefulpy through relatively few endpoints.
 
 .. warning::
 
@@ -86,7 +86,7 @@ Fetching Data
 =============
 
 Since reading data out of an API is a very common activity (and the easiest
-type of request to make), we'll start there. Tastypie tries to expose various
+type of request to make), we'll start there. Tastefulpy tries to expose various
 parts of the API & interlink things within the API (HATEOAS).
 
 Api-Wide
@@ -367,7 +367,7 @@ Selecting A Subset Of Resources
 -------------------------------
 
 Sometimes you may want back more than one record, but not an entire list view
-nor do you want to do multiple requests. Tastypie includes a "set" view, which
+nor do you want to do multiple requests. Tastefulpy includes a "set" view, which
 lets you cherry-pick the objects you want. For example, if we just want the
 first & third ``Entry`` resources, we'd run::
 
@@ -411,7 +411,7 @@ them, you're going to get them all.
 Sending Data
 ============
 
-Tastypie also gives you full write capabilities in the API. Since the
+Tastefulpy also gives you full write capabilities in the API. Since the
 ``EntryResource`` has the no-limits ``Authentication`` & ``Authorization`` on
 it, we can freely write data.
 
@@ -421,7 +421,7 @@ it, we can freely write data.
   write-enabled resources on the Internet, because someone will trash your
   data.
 
-  This is why ``ReadOnlyAuthorization`` is the default in Tastypie & why you
+  This is why ``ReadOnlyAuthorization`` is the default in Tastefulpy & why you
   must override to provide more access.
 
 The good news is that there are no new URLs to learn. The "list" & "detail"
@@ -437,25 +437,25 @@ to the familiar ``POST`` request.
 
 .. note::
 
-    Tastypie encourages "round-trippable" data, which means the data you
+    Tastefulpy encourages "round-trippable" data, which means the data you
     can GET should be able to be POST/PUT'd back to recreate the same
     object.
 
     If you're ever in question about what you should send, do a GET on
-    another object & see what Tastypie thinks it should look like.
+    another object & see what Tastefulpy thinks it should look like.
 
 To create new resources/objects, you will ``POST`` to the list endpoint of
 a resource. Trying to ``POST`` to a detail endpoint has a different meaning in
 the REST mindset (meaning to add a resource as a child of a resource of the
 same type).
 
-As with all Tastypie requests, the headers we request are important. Since
+As with all Tastefulpy requests, the headers we request are important. Since
 we've been using primarily JSON throughout, let's send a new entry in JSON
 format::
 
     curl --dump-header - -H "Content-Type: application/json" -X POST --data '{"body": "This will prbbly be my lst post.", "pub_date": "2011-05-22T00:46:38", "slug": "another-post", "title": "Another Post", "user": "/api/v1/user/1/"}' http://localhost:8000/api/v1/entry/
 
-The ``Content-Type`` header here informs Tastypie that we're sending it JSON.
+The ``Content-Type`` header here informs Tastefulpy that we're sending it JSON.
 We send the data as a JSON-serialized body (**NOT** as form-data in the form of
 URL parameters). What we get back is the following response::
 
@@ -674,7 +674,7 @@ For detailed information on the format of a bulk request, see :ref:`patch-list`.
 You Did It!
 ===========
 
-That's a whirlwind tour of interacting with a Tastypie API. There's additional
+That's a whirlwind tour of interacting with a Tastefulpy API. There's additional
 functionality present, such as:
 
 * ``POST``/``PUT`` the other supported content-types

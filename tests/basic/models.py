@@ -2,7 +2,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django import forms
-from tastypie.utils import now
+from tastefulpy.utils import now
 
 
 class Note(models.Model):
