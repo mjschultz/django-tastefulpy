@@ -1,7 +1,7 @@
 .. _ref-who-uses:
 
 Sites Using Tastefulpy
-====================
+======================
 
 The following sites are a partial list of people using Tastefulpy. I'm always
 interested in adding more sites, so please find me (``daniellindsley``) via

@@ -1,8 +1,8 @@
 .. _ref-settings:
 
-=================
+===================
 Tastefulpy Settings
-=================
+===================
 
 This is a comprehensive list of the settings Tastefulpy recognizes.
 
@@ -30,7 +30,7 @@ Defaults to 20.
 
 
 ``TASTEFULPY_FULL_DEBUG``
-=======================
+=========================
 
 **Optional**
 
