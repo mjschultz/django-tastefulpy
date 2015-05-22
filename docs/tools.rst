@@ -31,7 +31,7 @@ Extensions
 ==========
 
 Tastefulpy-msgpack
-----------------
+------------------
 
 https://github.com/stephenmcd/tastefulpy-msgpack
 
@@ -154,7 +154,7 @@ Javascript
 ==========
 
 backbone-tastefulpy
------------------
+-------------------
 
 https://github.com/PaulUithol/backbone-tastefulpy
 
